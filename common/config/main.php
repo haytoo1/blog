@@ -2,6 +2,14 @@
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
+        // 数据库配置
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=211.149.208.43;dbname=community',
+            'username' => 'too',
+            'password' => '123456',
+            'charset' => 'utf8',
+        ],
         /*'filecache' => [
             'class' => 'yii\caching\FileCache',
         ],*/
@@ -22,15 +30,6 @@ return [
             'class'=>'yii\redis\Session'
         ],
 
-        // URL美化
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false, // 隐藏index.php
-            'rules' => [
-                'main'=>'site/index'
-            ],
-        ],
-
         // 邮件配置
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
@@ -44,5 +43,7 @@ return [
                 'encryption' => 'tls',
             ],
         ],
-    ]
+
+    ],
+
 ];

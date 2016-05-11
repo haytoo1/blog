@@ -72,6 +72,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        return $this->render('index');
+        p('site/index');
 //        phpinfo();
         $a = yii::$app->mailer
             ->compose('@common/mail/test',['contents'=>'╭(╯^╰)╮'])
