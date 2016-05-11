@@ -13,7 +13,15 @@ $config = yii\helpers\ArrayHelper::merge(
     require(__DIR__ . '/../config/main.php'),
     require(__DIR__ . '/../config/main-local.php')
 );
-
+function p()
+{
+    echo '<pre>';
+    foreach(func_get_args() as $_v)
+    {
+        var_dump($_v);
+    }
+    die;
+}
 $application = new yii\web\Application($config);
 $application->run();
  
