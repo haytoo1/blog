@@ -11,9 +11,9 @@ use yii;
 
 class IndexController extends yii\web\Controller
 {
-
+    public $layout = 'main.html';
     public function actionIndex()
     {
-        echo 'index/index';
+        return $this->render('index.html');
     }
 }
