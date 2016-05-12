@@ -1,0 +1,73 @@
+body {
+    margin: 0px;
+}
+
+.form{
+	width: 90%;
+    margin: 30px auto 20px auto;
+	margin-top: 30px;
+	position: relative;
+	overflow: hidden;
+}
+.form-content {
+	    padding: 20px 20px 0px 20px;
+}
+.form-content div{
+	margin-bottom: 20px;
+}
+.form #name {
+	width: 300px;
+}
+
+.form #line-top{
+	position: absolute;
+	top: 0px;
+	left: -4000px;
+	width: 6000px;
+	height: 0px;
+	border-top: 2px dashed #EEEEEE;
+}
+.form #line-right{
+	position: absolute;
+	right: 0px;
+    top: -4000px;
+	width: 0px;
+	height: 6000px;
+	border-right: 2px dashed #EEEEEE;
+}
+.form #line-bottom{
+	position: absolute;
+	bottom: 0px;
+	left: -2000px;
+	width: 6000px;
+	height: 0px;
+	border-bottom: 2px dashed #EEEEEE;
+}
+.form #line-left{
+	position: absolute;
+	left: 0px;
+	top: -2000px;
+	width: 0px;
+	height: 6000px;
+	border-left: 2px dashed #EEEEEE;
+}
+
+.editer{
+	width: 90%;
+	min-height: 600px;
+	margin: auto;
+}
+
+.footer{
+	width: 90%;
+	margin: auto;
+	padding: 0px 20px  50px 20px;
+}
+.footer span{
+	background-color: #1AB394;
+	border-radius: 5px;
+	display: block;
+	padding: 5px 10px 5px 10px;
+	float: left;
+	margin-right: 5px;
+}
