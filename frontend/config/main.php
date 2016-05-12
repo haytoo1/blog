@@ -16,7 +16,10 @@ return [
     'defaultRoute'=>'index', // 设置默认路由
 
     'components' => [
-
+        'request' => [
+            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+            'cookieValidationKey' => '85NEt9diiI4vRV6kpvBsJ7qsryA2eaVt',
+        ],
 
         'user' => [
             'identityClass' => 'common\models\User',

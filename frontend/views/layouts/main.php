@@ -2,12 +2,15 @@
 <html>
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
-    <title>测试页面</title>
+    <title><?php echo $this->context->title ?></title>
+    <meta name="description" content="<?php echo $this->context->desc ?>">
+    <meta name="keywords" content="<?php echo $this->context->keyword ?>">
+
     <link rel="shortcut icon" href="img/favicon.ico">
-    <link rel="stylesheet" href="/static/bootstrap-3.3.5-dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.5-dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/static/css/page.css"/>
     <script src="/static/jquery-2.1.1/jquery.min.js" type="text/javascript"></script>
-    <script src="/static/bootstrap-3.3.5-dist/js/bootstrap.js" type="text/javascript"></script>
+    <script src="/static/bootstrap-3.3.5-dist/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/static/js/jqPaginator.js" type="text/javascript"></script>
     <script src="/static/layer/layer.js" type="text/javascript"></script>
 </head>
@@ -25,8 +28,8 @@
         <div class="row logo-row">
             <div class="col-xs-12 col-md-8">
                 <a href="#">
-                    <h1>这是个兼容手机和PC端的页面</h1>
-                    <h4>主要使用了bootstrap相应式框架完成任务</h4>
+                    <h1>猛男哦吧</h1>
+                    <h4>人如果没有梦想,和酸菜鱼又有什么区别  - by 周星吃</h4>
                 </a>
             </div>
         </div>
@@ -130,7 +133,7 @@
     </div>
 </div>
 <div class="row footer">
-    <span>web交流网站|QQ群：1234567</span>
+    <span>发个邮件? <email>hayto@foxmail.com</email></span>
 </div>
 </div>
 
