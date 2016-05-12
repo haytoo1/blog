@@ -15,7 +15,6 @@ use yii\helpers\Html;
 </head>
 <body>
     <?php $this->beginBody() ?>
-    <span>dafadfasf</span>
     <?= $content ?>
     <?php $this->endBody() ?>
 </body>
