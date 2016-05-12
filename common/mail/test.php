@@ -1,9 +1,3 @@
-<?php
-/**
- * User: 涂鸿<hayto@foxmail.com>
- * Date-Time: 2016/5/11 16:10
- */
-
  <div style="width:600px">
 	<div style="padding:20px 0px 20px 0px;">亲爱的echo $contents['name'];：</div>
 	<p style="margin:0px 0px 10px 0px;">请点击下面的链接激活账号完成注册。（48小时内完成）</p>

@@ -26,7 +26,7 @@
             <div class="col-xs-12 col-md-8">
                 <a href="#">
                     <h1>这是个兼容手机和PC端的页面</h1>
-                    <h4>主要使用了bootstrap相应式框架完成任务</h3>
+                    <h4>主要使用了bootstrap相应式框架完成任务</h4>
                 </a>
             </div>
         </div>
