@@ -9,6 +9,7 @@
 namespace frontend\controllers;
 use common\models\User;
 use common\toolkit\CustomException;
+use common\toolkit\queueSendMail;
 use common\toolkit\tools;
 use yii;
 
@@ -21,7 +22,7 @@ class UserController extends yii\web\Controller
     public function actionRegister()
     {
         yii::$app->getResponse()->format = 'json';
-        $post = yii::$app->getRequest()->post();
+        $post = yii::$app->getRequest()->get();
         $model = new User();
         $model->setScenario('register');
         try{
@@ -32,8 +33,8 @@ class UserController extends yii\web\Controller
                 $errors = $model->getFirstErrors();
                 throw new CustomException(reset($errors));
             }
-            $model->registerFromEmail();
-            
+            $model->register();
+            queueSendMail::pushMail($this->user_email);
             $res = ['msg'=>'注册成功','status'=>1];
         }catch(CustomException $e){
             $res = ['msg'=>$e->getMessage(),'status'=>0];
@@ -59,7 +60,7 @@ class UserController extends yii\web\Controller
     public function actionLogin()
     {
         yii::$app->getResponse()->format = 'json';
-        $post = yii::$app->getRequest()->post();
+        $post = yii::$app->getRequest()->get();
         $model = new User();
         $model->scenario = 'login';
         try{
@@ -76,6 +77,7 @@ class UserController extends yii\web\Controller
         }catch (\Exception $e){
             $res = ['status'=>0,'msg'=>'系统异常1'];
         }
+
         return $res;
     }
 }

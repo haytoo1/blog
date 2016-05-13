@@ -27,7 +27,8 @@ $config = [
         ],
         // redis接管session
         'session'=>[
-            'class'=>'yii\redis\Session'
+            'class'=>'yii\redis\Session',
+            'keyPrefix' => 'sess_'
         ],
 
         // 邮件配置
