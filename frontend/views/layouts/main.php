@@ -167,12 +167,19 @@
                     <span class="right-title"></span>
                 </div>
                 <div>
-                    <div class="row-input"><span class="input-img glyphicon glyphicon-user"></span><input type="text" id="userid" placeholder="输入用户名"/></div>
-                    <div class="row-input"><span class="input-img glyphicon glyphicon-lock"></span><input type="password" id="password"/ placeholder="输入密码"></div>
-                    <div class="row-input"><span class="input-img glyphicon glyphicon-lock"></span><input type="password" id="password"/ placeholder="再次输入密码"></div>
+                    <div class="row-input"><span class="input-img glyphicon glyphicon-user">
+                        </span><input type="text" name="account" placeholder="输入用户名"/>
+
+                    </div>
+                    <div class="row-input"><span class="input-img glyphicon glyphicon-lock">
+                        </span><input type="password" name="password" placeholder="输入密码">
+                    </div>
+                    <div class="row-input"><span class="input-img glyphicon glyphicon-lock">
+                        </span><input type="password" name="repassword" placeholder="再次输入密码">
+                    </div>
                 </div>
                 <div class="fottor">
-                    <span class="btn btn-default">注册</span>
+                    <span class="btn btn-default" id="reg">注册</span>
                     <span class="btn btn-default" id="reload">返回登陆</span>
                 </div>
             </div>
@@ -180,6 +187,12 @@
     </div>
 </div>
 <!--登陆注册弹出层结束-->
+<script src="/static/js/user/register.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/homepage.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    $("#reg").on('click',function () {
+        register.fetch();
+    })
+</script>
 </body>
 </html>

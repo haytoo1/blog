@@ -11,6 +11,12 @@ namespace common\toolkit;
 
 class tools
 {
+    /**
+     * 判断字符串是 邮箱 还是 手机号
+     * @param $str
+     * @return string
+     * @author 涂鸿
+     */
     public static function detectionStrIsPhoneOrEmail($str){
         if(filter_var($str,FILTER_VALIDATE_EMAIL)){
             return 'email';
