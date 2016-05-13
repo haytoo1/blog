@@ -22,6 +22,7 @@ class UserController extends yii\web\Controller
     public function actionRegister()
     {
         yii::$app->getResponse()->format = 'json';
+
         $post = yii::$app->getRequest()->get();
         $model = new User();
         $model->setScenario('register');

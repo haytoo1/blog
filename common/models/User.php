@@ -91,7 +91,7 @@ class User extends \yii\db\ActiveRecord
     public function scenarios()
     {
         return [
-            'register' => ['account','user_passwd','repasswd'],
+            'register' => ['account1','user_passwd','repasswd'],
 //            'registerFromPhone' => ['user_phone','user_passwd'],
             'login' => ['account','user_passwd'],
         ];

@@ -23,6 +23,7 @@ class IndexController extends yii\web\Controller
         $email = $redis->executeCommand('brpop',['emailQueue',0]);
         p($email);*/
         queueSendMail::pushMail('466594257@qq.com');
+        queueSendMail::pushMail('2116398125@qq.com');
         return $this->render('index');
     }
 }
