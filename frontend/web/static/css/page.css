@@ -87,7 +87,7 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
 .daohang ul{
 	position: relative;
 	z-index: 50;
-	top: -22px;
+	top: -50px;
 	background-color: #383535;
 	height: auto;
 }
@@ -126,6 +126,9 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
 	.daohang li a{
 		padding: 0px 35px 0px 35px;
 	}
+	.daohang ul{
+		top: -22px;
+}
 }
 
 /*主要内容*/
