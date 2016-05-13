@@ -21,7 +21,7 @@ class UserController extends yii\web\Controller
     public function actionRegister()
     {
         yii::$app->getResponse()->format = 'json';
-        $post = yii::$app->getRequest()->get();
+        $post = yii::$app->getRequest()->post();
         $model = new User();
         $model->setScenario('register');
         try{
@@ -59,7 +59,7 @@ class UserController extends yii\web\Controller
     public function actionLogin()
     {
         yii::$app->getResponse()->format = 'json';
-        $post = yii::$app->getRequest()->get();
+        $post = yii::$app->getRequest()->post();
         $model = new User();
         $model->scenario = 'login';
         try{
@@ -76,6 +76,7 @@ class UserController extends yii\web\Controller
         }catch (\Exception $e){
             $res = ['status'=>0,'msg'=>'系统异常1'];
         }
+        yii\helpers\Url::to(['user/login','account'=>'邮箱','user_passwd'=>'密码'])
         return $res;
     }
 }
