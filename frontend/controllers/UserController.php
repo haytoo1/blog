@@ -76,7 +76,6 @@ class UserController extends yii\web\Controller
         }catch (\Exception $e){
             $res = ['status'=>0,'msg'=>'系统异常1'];
         }
-        yii\helpers\Url::to(['user/login','account'=>'邮箱','user_passwd'=>'密码'])
         return $res;
     }
 }
