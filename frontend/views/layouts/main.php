@@ -6,7 +6,7 @@
     <meta name="description" content="<?php echo $this->context->desc ?>">
     <meta name="keywords" content="<?php echo $this->context->keyword ?>">
 
-    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="shortcut icon" href="/static/img/favicon.ico">
     <link rel="stylesheet" href="/static/bootstrap-3.3.5-dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/static/css/page.css"/>
     <script src="/static/jquery-2.1.1/jquery.min.js" type="text/javascript"></script>
