@@ -35,6 +35,7 @@ use Yii;
  * @property string $timeZone The time zone used by this application.
  * @property string $uniqueId The unique ID of the module. This property is read-only.
  * @property \yii\web\UrlManager $urlManager The URL manager for this application. This property is read-only.
+ * @property \yii\redis\Connection $redis The URL manager for this application. This property is read-only.
  * @property string $vendorPath The directory that stores vendor files. Defaults to "vendor" directory under
  * [[basePath]].
  * @property View|\yii\web\View $view The view application component that is used to render various view

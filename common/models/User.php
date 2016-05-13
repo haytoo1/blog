@@ -2,7 +2,10 @@
 
 namespace common\models;
 
+use common\toolkit\CustomException;
+use common\toolkit\queueSendMail;
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "user".
@@ -23,9 +26,13 @@ use Yii;
  * @property string $user_city
  * @property string $user_county
  * @property string $user_ip
+ * @property string $account
+ *
  */
 class User extends \yii\db\ActiveRecord
 {
+    public $account;
+    public $repasswd;
     /**
      * @inheritdoc
      */
@@ -84,8 +91,9 @@ class User extends \yii\db\ActiveRecord
     public function scenarios()
     {
         return [
-            'registerFromEmail' => ['user_email','user_passwd'],
-            'registerFromPhone' => ['user_phone','user_passwd']
+            'register' => ['account','user_passwd','repasswd'],
+//            'registerFromPhone' => ['user_phone','user_passwd'],
+            'login' => ['account','user_passwd'],
         ];
     }
 
@@ -98,6 +106,33 @@ class User extends \yii\db\ActiveRecord
     }
 
     public function registerFromEmail()
+    {
+        if($this->user_passwd !== $this->repasswd){
+            throw new CustomException('两次密码不一致');
+        }
+        $this->user_email = $this->account;
+        $this->user_salt = yii::$app->security->generateRandomString(10);
+        $this->user_passwd = md5($this->user_salt . $this->user_passwd);
+        $this->user_sn = 'SN' . yii::$app->security->generateRandomString(14);
+        $this->user_nickname = $this->generateNickname();
+
+        return $this->insert(false);
+
+//        queueSendMail::pushMail($this->user_email);
+    }
+
+    public function login()
+    {
+        $_info = (new Query())->from(self::tableName())
+            ->where(['user_email'=>$this->account])
+            ->one();
+        if($_info['user_passwd'] !== md5($_info['user_salt'] . $this->user_passwd)){
+            throw new CustomException('密码错误');
+        }
+        return true;
+    }
+
+    private function encryptPwd()
     {
 
     }

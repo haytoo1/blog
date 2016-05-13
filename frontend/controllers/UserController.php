@@ -20,25 +20,20 @@ class UserController extends yii\web\Controller
      */
     public function actionRegister()
     {
-        $post['data'] = yii::$app->getRequest()->post();
-
+        yii::$app->getResponse()->format = 'json';
+        $post = yii::$app->getRequest()->get();
         $model = new User();
-
-        $scenarioArr = [
-            'email'=>$model->scenario = 'registerFromEmail',
-            'phone'=>$model->scenario = 'registerFromPhone',
-        ];
-        $scenarioArr[tools::detectionStrIsPhoneOrEmail($post['data']['account'])];
-
+        $model->setScenario('register');
         try{
-            if($model->load($post,'data')){
-                throw new CustomException('系统错误,请重试');
-            }
+            $model->account = $post['account'];
+            $model->user_passwd = $post['user_passwd'];
+            $model->repasswd = $post['repasswd'];
             if(!$model->validate()){
                 $errors = $model->getFirstErrors();
                 throw new CustomException(reset($errors));
             }
             $model->registerFromEmail();
+            
             $res = ['msg'=>'注册成功','status'=>1];
         }catch(CustomException $e){
             $res = ['msg'=>$e->getMessage(),'status'=>0];
@@ -48,11 +43,39 @@ class UserController extends yii\web\Controller
         return $res;
     }
 
+    /**
+     * 通过邮箱注册的，需要调用这个方法激活
+     * @return yii\web\Response
+     * @author 涂鸿
+     */
     public function actionActivate()
     {
         $user_sn = yii::$app->getRequest()->get('uid',0);
         if(!empty($user_sn) && User::updateAll(['user_locked'=>1],['user_sn'=>$user_sn])){
             return $this->goHome();
         }
+    }
+
+    public function actionLogin()
+    {
+        yii::$app->getResponse()->format = 'json';
+        $post = yii::$app->getRequest()->get();
+        $model = new User();
+        $model->scenario = 'login';
+        try{
+            $model->account = $post['account'];
+            $model->user_passwd = $post['user_passwd'];
+            if(!$model->validate()){
+                $errors = $model->getFirstErrors();
+                throw new CustomException(reset($errors));
+            }
+            $model->login();
+            $res = ['status'=>1,'msg'=>'登录成功'];
+        }catch (CustomException $e){
+            $res = ['status'=>0,'msg'=>$e->getMessage()];
+        }catch (\Exception $e){
+            $res = ['status'=>0,'msg'=>'系统异常1'];
+        }
+        return $res;
     }
 }
