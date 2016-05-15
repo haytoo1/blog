@@ -7,31 +7,35 @@
 namespace console\controllers;
 use yii;
 
-class SendmailController extends yii\base\Controller
+class SendmailController extends yii\console\Controller
 {
+    public $subject = '标题哦1';
     /**
-     * 控制台命令发邮件
+     * 控制台命令发邮件,此方法驻留内存55秒,定时任务每分钟执行一次,达到释放内存的效果
      * @return bool
      * @author 涂鸿
      */
     public function actionSendmail()
     {
+        $stime = time();
         $redis = yii::$app->redis;
-        $redis->executeCommand('select',[1]);
-        while (true){
-            $email = $redis->executeCommand('RPOP',['emailQueue']);
+        while ((time()-$stime) < 56){
+            $redis->executeCommand('select',[1]);
+            // brpop 可以弹出多个list,可以作为实现优先级功能 brop hlist llist 0
+            $email = $redis->executeCommand('BRPOP',['emailQueue',0]);
             if(!$email){
                 sleep(2);
             }else{
                 try{
-                    yii::$app->mailer
-                        ->compose('@common/mail/test',['contents'=>['name'=>'方方','link'=>'https://www.google.com']])
+                    $sender = yii::$app->mailer;
+                    $sender->compose('@common/mail/test',['contents'=>['name'=>'方方','link'=>'https://www.google.com']])
                         ->setFrom(yii::$app->params['adminEmail'])
-                        ->setTo($email)
-                        ->setSubject('晚上好哟')
+                        ->setTo($email[1])
+                        ->setSubject($this->subject)
                         ->send();
+                    unset($sender);
                 }catch (\Exception $e){
-                    echo $e->getMessage(),PHP_EOL,$email;
+                    throw $e;
                 }
             }
         }

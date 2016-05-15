@@ -35,12 +35,15 @@ class UserController extends yii\web\Controller
                 throw new CustomException(reset($errors));
             }
             $model->register();
-            queueSendMail::pushMail($this->user_email);
+            // 追加进邮件队列
+            queueSendMail::pushMail($post['account']);
             $res = ['msg'=>'注册成功','status'=>1];
         }catch(CustomException $e){
-            $res = ['msg'=>$e->getMessage(),'status'=>0];
+//            throw $e;
+            $res = ['msg'=>$e->getMessage().PHP_EOL,'status'=>0];
         }catch(\Exception $e){
-            $res = ['msg'=>$e->getMessage(),'status'=>0];
+//            throw $e;
+            $res = ['msg'=>$e->getMessage().PHP_EOL,'status'=>0];
         }
         return $res;
     }
@@ -54,12 +57,13 @@ class UserController extends yii\web\Controller
     {
         $user_sn = yii::$app->getRequest()->get('uid',0);
         if(!empty($user_sn) && User::updateAll(['user_locked'=>1],['user_sn'=>$user_sn])){
-            return $this->goHome();
+            return ['status'=>1,'msg'=>'激活成功'];
         }
     }
 
     public function actionLogin()
     {
+        p(yii::$app->getSession()->get('username'));
         yii::$app->getResponse()->format = 'json';
         $post = yii::$app->getRequest()->get();
         $model = new User();
@@ -76,7 +80,7 @@ class UserController extends yii\web\Controller
         }catch (CustomException $e){
             $res = ['status'=>0,'msg'=>$e->getMessage()];
         }catch (\Exception $e){
-            $res = ['status'=>0,'msg'=>'系统异常1'];
+            $res = ['status'=>0,'msg'=>'系统异常'];
         }
 
         return $res;

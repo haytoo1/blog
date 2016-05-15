@@ -39,14 +39,12 @@ $config = [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.qq.com',
                 'username' => 'hayto@foxmail.com',
-                'password' => 'tpztsvggjfhfbifh',
                 'port' => '587',
                 'encryption' => 'tls',
+                'password' => 'tpztsvggjfhfbifh',
             ],
         ],
-
-    ],
-
+]
 ];
 if(YII_DEBUG) {
     $config['bootstrap'][] = 'debug';

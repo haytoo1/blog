@@ -54,7 +54,7 @@ class User extends \yii\db\ActiveRecord
             [['user_nickname'], 'string', 'max' => 8],
             [['user_email'], 'string', 'max' => 20],
             [['user_phone'], 'string', 'max' => 11],
-            [['user_passwd'], 'string', 'max' => 12],
+            [['user_passwd'], 'string', 'min'=>6,'max' => 12,'tooShort'=>'密码最少有6位','tooLong'=>'密码最长12位'],
             [['user_salt'], 'string', 'max' => 10],
             [['user_province', 'user_city', 'user_county'], 'string', 'max' => 5],
             [['user_ip'], 'string', 'max' => 15],
@@ -91,7 +91,7 @@ class User extends \yii\db\ActiveRecord
     public function scenarios()
     {
         return [
-            'register' => ['account1','user_passwd','repasswd'],
+            'register' => ['account','user_passwd','repasswd'],
 //            'registerFromPhone' => ['user_phone','user_passwd'],
             'login' => ['account','user_passwd'],
         ];
@@ -137,6 +137,9 @@ class User extends \yii\db\ActiveRecord
         $_info = (new Query())->select(['user_passwd','user_salt','user_nickname'])->from(self::tableName())
             ->where(['user_email'=>$this->account])
             ->one();
+        if(!empty($_info) === false){
+            throw new CustomException('账号不存在');
+        }
         if($_info['user_passwd'] !== md5($_info['user_salt'] . $this->user_passwd)){
             throw new CustomException('密码错误');
         }
