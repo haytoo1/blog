@@ -20,15 +20,18 @@ class SendmailController extends yii\console\Controller
         $stime = time();
         $redis = yii::$app->redis;
         while ((time()-$stime) < 56){
-            $redis->executeCommand('select',[1]);
+//            $redis->executeCommand('select',[1]);
             // brpop 可以弹出多个list,可以作为实现优先级功能 brop hlist llist 0
             $email = $redis->executeCommand('BRPOP',['emailQueue',0]);
             if(!$email){
                 sleep(2);
             }else{
                 try{
+                    $cache = yii::$app->getCache();
+                    $url = $cache->get($email); // 要发送的链接
+                    $cache->delete($email);
                     $sender = yii::$app->mailer;
-                    $sender->compose('@common/mail/test',['contents'=>['name'=>'方方','link'=>'https://www.google.com']])
+                    $sender->compose('@common/mail/test',['contents'=>['name'=>$email[1],'link'=>$url]])
                         ->setFrom(yii::$app->params['adminEmail'])
                         ->setTo($email[1])
                         ->setSubject($this->subject)

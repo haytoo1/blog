@@ -14,21 +14,31 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],*/
 
-        // 配置redis连接
+        // 自定义命令存1数据库[邮件队列在这里]
         'redis' => [
             'class' => 'yii\redis\Connection',
             'hostname' => '127.0.0.1',
             'port' => 6379,
-            'database' => 0,
+            'database' => 1,
         ],
-        // redis接管cache
+        // cache存2数据库
         'cache'=>[
-            'class'=>'yii\redis\Cache'
+            'class'=>'yii\redis\Cache',
+            'redis' => [
+                'hostname'=>'127.0.0.1',
+                'port'=>6379,
+                'database'=>2
+            ]
         ],
-        // redis接管session
+        // session存0数据库
         'session'=>[
             'class'=>'yii\redis\Session',
-            'keyPrefix' => 'sess_'
+            'keyPrefix' => 'sess_',
+            'redis' => [
+                'hostname'=>'127.0.0.1',
+                'port'=>6379,
+                'database'=>0
+            ]
         ],
 
         // 邮件配置

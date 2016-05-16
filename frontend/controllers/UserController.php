@@ -15,6 +15,7 @@ use yii;
 
 class UserController extends yii\web\Controller
 {
+
     /**
      * 邮箱注册
      * @return array
@@ -36,7 +37,11 @@ class UserController extends yii\web\Controller
             }
             $model->register();
             // 追加进邮件队列
-            queueSendMail::pushMail($post['account']);
+            $url = yii::$app->getUrlManager()->createAbsoluteUrl(['user/activate','id'=>urlencode($post['account'])]);
+            queueSendMail::pushMail($post['account'],$url);
+            // 记录注册时间,激活用
+            $this->recordRegTime($post['account']);
+
             $userinfo = [
                 'name'=>yii::$app->getSession()->get('username')
             ];
@@ -58,15 +63,22 @@ class UserController extends yii\web\Controller
      */
     public function actionActivate()
     {
-        $user_sn = yii::$app->getRequest()->get('uid',0);
-        if(!empty($user_sn) && User::updateAll(['user_locked'=>1],['user_sn'=>$user_sn])){
-            return ['status'=>1,'msg'=>'激活成功'];
+        yii::$app->getResponse()->format = 'json';
+
+        $account = yii::$app->getRequest()->get('id',0);
+        if(!yii::$app->getCache()->get(urldecode($account))){
+            $res = ['status'=>0,'msg'=>'已经过了激活时限,请点击重发邮件'];
         }
+        if(!empty($user_sn) && User::updateAll(['user_active'=>1],['user_sn'=>$user_sn])){
+            $res = ['status'=>1,'msg'=>'激活成功'];
+        }
+        return $res;
     }
 
     public function actionLogin()
     {
         yii::$app->getResponse()->format = 'json';
+
         $post = yii::$app->getRequest()->post();
         $model = new User();
         $model->scenario = 'login';
@@ -89,13 +101,30 @@ class UserController extends yii\web\Controller
         }
         return $res;
     }
+
+    /**
+     * 退出登录
+     * @return array
+     * @author 涂鸿 <hayto@foxmail.com>
+     */
     public function actionLogout()
     {
-        $s = yii::$app->getSession();
-        p(
-            $s->id
-    );
+        $a= yii::$app->getCache()->get('466594257@qq.com');
+        p($a);
+        die;
         yii::$app->getResponse()->format = 'json';
+        yii::$app->getSession()->remove('username');
         return ['msg'=>'退出成功','status'=>1,'userinfo'=>''];
+    }
+
+
+    /**
+     * 设置邮件激活的时间期限
+     * @param $username
+     * @author 涂鸿 <hayto@foxmail.com>
+     */
+    private function recordRegTime($account)
+    {
+        yii::$app->getCache()->set(urlencode($account),1,yii::$app->params['reg_time']);
     }
 }

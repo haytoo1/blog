@@ -9,13 +9,19 @@ use yii;
 
 class queueSendMail
 {
-    // 把邮箱加入队列,有后台脚本专门处理队列
-    public static function pushMail($email)
+    /**
+     * 把邮箱加入队列,有后台脚本专门处理队列
+     * @param $email
+     * @param $url
+     * @return array
+     * @author 涂鸿 <hayto@foxmail.com>\
+     */
+    public static function pushMail($email,$url)
     {
         try{
             $redis = yii::$app->redis;
-            $redis->executeCommand('select',[1]);
             $redis->executeCommand('lpush',['emailQueue',$email]);
+            yii::$app->getCache()->set($email,$url);
             $res = ['status'=>1,'msg'=>'成功'];
         }catch (\Exception $e){
             $res = ['status'=>0,'msg'=>$e->getMessage()];
