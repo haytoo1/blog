@@ -9,7 +9,7 @@ use yii;
 
 class queueSendMail
 {
-    // 把邮箱加入队列
+    // 把邮箱加入队列,有后台脚本专门处理队列
     public static function pushMail($email)
     {
         try{

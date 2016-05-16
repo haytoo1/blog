@@ -27,7 +27,8 @@ $config = [
         ],
         // redis接管session
         'session'=>[
-            'class'=>'yii\redis\Session'
+            'class'=>'yii\redis\Session',
+            'keyPrefix' => 'sess_'
         ],
 
         // 邮件配置
@@ -38,14 +39,12 @@ $config = [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.qq.com',
                 'username' => 'hayto@foxmail.com',
-                'password' => 'tpztsvggjfhfbifh',
                 'port' => '587',
                 'encryption' => 'tls',
+                'password' => 'tpztsvggjfhfbifh',
             ],
         ],
-
-    ],
-
+]
 ];
 if(YII_DEBUG) {
     $config['bootstrap'][] = 'debug';
