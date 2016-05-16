@@ -345,7 +345,28 @@ var getloadstatus = function(userinfo){
 		$('#user-name').text(userinfo['name']);
 	}
 	$('.user-info').addClass('islanding');
-}
+};
+
+/*请求文章数据*/
+(function(){
+	var data = $.ajax({
+		type:"get",
+		url:getlists,
+		dataType:'json',
+		
+		success:function(data){
+			if(data.status==1){
+				getloadstatus(data.userinfo);
+			}
+		},
+		error:function(){
+			layer.alert(1);
+		},
+		complete:function(){
+			self.obj = null;
+		}
+	});
+})();
 
 var init = function(){
 	qq_check_type();
