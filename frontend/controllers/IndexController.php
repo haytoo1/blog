@@ -16,17 +16,11 @@ class IndexController extends yii\web\Controller
     public $keyword = 'PHP入门到精通,MySQL中文文档,nginx,redis,JavaScript,HTML5,iOS,yii2框架,不断学习,超越逗比';
     public function actionIndex()
     {
-        /*queueSendMail::pushMail('3143435831@qq.com');
-        queueSendMail::pushMail('740827289@qq.com');*/
-        /*if(!yii::$app->getRequest()->getIsAjax()){
-            return
-        }*/
         if(yii::$app->getRequest()->getIsAjax()){
             $userinfo = yii::$app->getSession()->get('username');
             return ['status'=>1,'msg'=>'ok','userinfo'=>$userinfo,'data'=>[]];
         }
         return $this->render('index');
-
     }
 
     /**
