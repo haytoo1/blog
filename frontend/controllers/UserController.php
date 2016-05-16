@@ -92,6 +92,7 @@ class UserController extends yii\web\Controller
     public function actionLogout()
     {
         yii::$app->getSession()->destroy();
+        yii::$app->getResponse()->format = 'json';
         return ['msg'=>'退出成功','status'=>1,'userinfo'=>''];
     }
 }
