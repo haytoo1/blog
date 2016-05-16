@@ -132,6 +132,7 @@ var sendregisterrequest = function(username, pass1, pass2){
 					skin: 'yourclass',
 					content: $('#activate'),
 				});
+				getloadstatus(date.userinfo);
 			}else{
 				alert('注册失败：'+date['msg']);
 			}
@@ -161,7 +162,8 @@ var sendloadingrequest = function(username, pass1){
 		success:function(date){
 			layer.closeAll('loading');
 			if(date.status == 1){
-				
+				getloadstatus(date.userinfo);
+				$('.close  close-tips').click();
 			}else{
 				alert('注册失败：'+date['msg']);
 			}
@@ -332,8 +334,8 @@ $('.reload-page').click(function(){
 	location.reload();
 });
 
-/*获取页面登陆状况*/
-var getloadstatus = function(){
+/*更新页面登陆状况*/
+var getloadstatus = function(userinfo){
 	
 }
 
