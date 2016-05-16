@@ -23,7 +23,7 @@ class UserController extends yii\web\Controller
     {
         yii::$app->getResponse()->format = 'json';
 
-        $post = yii::$app->getRequest()->get();
+        $post = yii::$app->getRequest()->post();
         $model = new User();
         $model->setScenario('register');
         try{
@@ -63,7 +63,7 @@ class UserController extends yii\web\Controller
 
     public function actionLogin()
     {
-        p(yii::$app->getSession()->get('username'));
+        p(yii::$app->getSession()->post('username'));
         yii::$app->getResponse()->format = 'json';
         $post = yii::$app->getRequest()->get();
         $model = new User();

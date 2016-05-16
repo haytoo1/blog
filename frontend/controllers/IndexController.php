@@ -18,6 +18,9 @@ class IndexController extends yii\web\Controller
     {
         /*queueSendMail::pushMail('3143435831@qq.com');
         queueSendMail::pushMail('740827289@qq.com');*/
+        /*if(!yii::$app->getRequest()->getIsAjax()){
+            return
+        }*/
         return $this->render('index');
 
     }
