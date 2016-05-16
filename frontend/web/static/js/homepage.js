@@ -217,7 +217,7 @@ var registered = function(){
 		$('.registered').css('left', '0px');
 		$('.registered').css('top', '0px');
 		$('.registered').css('opacity', '1');
-	});
+	}); 
 	/*推出按钮*/
 	$('#exit').click(function(){
 		$('.user-info').removeClass('islanding');
