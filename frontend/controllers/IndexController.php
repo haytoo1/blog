@@ -17,6 +17,7 @@ class IndexController extends yii\web\Controller
     public function actionIndex()
     {
         if(yii::$app->getRequest()->getIsAjax()){
+            yii::$app->getResponse()->format = 'json';
             $userinfo = yii::$app->getSession()->get('username');
             return ['status'=>1,'msg'=>'ok','userinfo'=>$userinfo,'data'=>[]];
         }
