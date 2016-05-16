@@ -17,7 +17,7 @@
 <body>
 <div class="container-fluid hpage">
     <div class="row htitle">
-        <div class="row">
+        <div class="row"> 
             <div class="user-info">
                 <span id="landing" data-toggle="modal" data-target="#myModal">登陆</span>
                 <span id="exit">退出</span>
