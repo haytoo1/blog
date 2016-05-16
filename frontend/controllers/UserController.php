@@ -42,10 +42,10 @@ class UserController extends yii\web\Controller
             ];
             $res = ['msg'=>'注册成功','status'=>1,'userinfo'=>$userinfo];
         }catch(CustomException $e){
-//            throw $e;
+            throw $e;
             $res = ['msg'=>$e->getMessage().PHP_EOL,'status'=>0];
         }catch(\Exception $e){
-//            throw $e;
+            throw $e;
             $res = ['msg'=>$e->getMessage().PHP_EOL,'status'=>0];
         }
         return $res;

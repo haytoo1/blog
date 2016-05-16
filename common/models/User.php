@@ -124,7 +124,8 @@ class User extends \yii\db\ActiveRecord
         $this->user_nickname = $this->generateNickname();
         $res = $this->insert(false);
         if($res){
-            $this->login();
+            // 登陆
+            yii::$app->getSession()->set('username',$this->user_nickname);
         }
         return $res;
     }
