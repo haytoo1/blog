@@ -15,7 +15,6 @@ use yii;
 
 class UserController extends yii\web\Controller
 {
-
     /**
      * 邮箱注册
      * @return array
@@ -23,7 +22,6 @@ class UserController extends yii\web\Controller
     public function actionRegister()
     {
         yii::$app->getResponse()->format = 'json';
-
         $post = yii::$app->getRequest()->post();
         $model = new User();
         $model->setScenario('register');
@@ -40,17 +38,13 @@ class UserController extends yii\web\Controller
             queueSendMail::pushMail($post['account']);
             // 记录注册时间,激活用
             $this->recordRegTime($post['account']);
-
-            $userinfo = [
-                'name'=>yii::$app->getSession()->get('username')
-            ];
-            $res = ['msg'=>'注册成功','status'=>1,'userinfo'=>$userinfo];
+            $res = ['msg'=>'注册成功','status'=>1];
         }catch(CustomException $e){
             $res = ['msg'=>$e->getMessage().PHP_EOL,'status'=>0];
         }catch(\Exception $e){
             $res = ['msg'=>$e->getMessage().PHP_EOL,'status'=>0];
         }
-        return $res;
+        return tools::returnDataWithLoginStatus($res);
     }
 
     /**
@@ -61,22 +55,32 @@ class UserController extends yii\web\Controller
     public function actionActivate()
     {
         yii::$app->getResponse()->format = 'json';
-
         $account = yii::$app->getRequest()->get('token',0);
-        $res = ['status'=>0,'msg'=>'激活失败'];
-        if(!yii::$app->getCache()->get($account)){
-            $res = ['status'=>0,'msg'=>'已经过了激活时限,请点击重发邮件'];
-        }
-        if(!empty($account) && User::updateAll(['user_active'=>0],['user_email'=>base64_decode($account)])){
+        try{
+            if(!yii::$app->getCache()->get($account)){
+                throw new CustomException('已经过了激活时限,请点击重发邮件');
+            }
+            if(!empty($account) !== true){
+                throw new CustomException('错误的请求');
+            }
+            if(!User::updateAll(['user_active'=>0],['user_email'=>base64_decode($account)])){
+                throw new CustomException('激活失败');
+            }
             $res = ['status'=>1,'msg'=>'激活成功'];
+        }catch(CustomException $e){
+            $res = ['status'=>0,'msg'=>$e->getMessage()];
         }
         return $res;
     }
 
+    /**
+     * 用户登录
+     * @return array
+     * @author 涂鸿 <hayto@foxmail.com>
+     */
     public function actionLogin()
     {
         yii::$app->getResponse()->format = 'json';
-
         $post = yii::$app->getRequest()->post();
         $model = new User();
         $model->scenario = 'login';
@@ -88,16 +92,13 @@ class UserController extends yii\web\Controller
                 throw new CustomException(reset($errors));
             }
             $model->login();
-            $userinfo = [
-                'name'=>yii::$app->getSession()->get('username')
-            ];
-            $res = ['status'=>1,'msg'=>'登录成功','userinfo'=>$userinfo];
+            $res = ['status'=>1,'msg'=>'登录成功'];
         }catch (CustomException $e){
             $res = ['status'=>0,'msg'=>$e->getMessage()];
         }catch (\Exception $e){
             $res = ['status'=>0,'msg'=>'系统异常'];
         }
-        return $res;
+        return tools::returnDataWithLoginStatus($res);
     }
 
     /**
@@ -109,7 +110,7 @@ class UserController extends yii\web\Controller
     {
         yii::$app->getResponse()->format = 'json';
         yii::$app->getSession()->remove('username');
-        return ['msg'=>'退出成功','status'=>1,'userinfo'=>''];
+        return tools::returnDataWithLoginStatus(['msg'=>'退出成功','status'=>1]);
     }
 
 
