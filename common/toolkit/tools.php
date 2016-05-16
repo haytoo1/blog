@@ -7,7 +7,7 @@
  */
 
 namespace common\toolkit;
-
+use yii;
 
 class tools
 {
@@ -23,5 +23,20 @@ class tools
         }
         // @todo 还没有开通手机注册,手机检测以后再做
         return 'phone';
+    }
+
+
+    /**
+     * 返回带登录状态的数据
+     * @param $data
+     * @return array
+     * @author 涂鸿 <hayto@foxmail.com>
+     */
+    public static function returnDataWithLoginStatus($data)
+    {
+        $userinfo = [
+            'name' => yii::$app->getSession()->get('username')?:''
+        ];
+        return array_merge(['userinfo' => $userinfo],$data);
     }
 }

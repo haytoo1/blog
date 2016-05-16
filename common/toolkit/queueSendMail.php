@@ -16,11 +16,12 @@ class queueSendMail
      * @return array
      * @author 涂鸿 <hayto@foxmail.com>\
      */
-    public static function pushMail($email,$url)
+    public static function pushMail($email)
     {
         try{
             $redis = yii::$app->redis;
             $redis->executeCommand('lpush',['emailQueue',$email]);
+            $url = yii::$app->getUrlManager()->createAbsoluteUrl(['user/activate','token'=>base64_encode($email)],'http');
             yii::$app->getCache()->set($email,$url);
             $res = ['status'=>1,'msg'=>'成功'];
         }catch (\Exception $e){

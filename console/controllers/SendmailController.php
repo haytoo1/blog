@@ -20,7 +20,6 @@ class SendmailController extends yii\console\Controller
         $stime = time();
         $redis = yii::$app->redis;
         while ((time()-$stime) < 56){
-//            $redis->executeCommand('select',[1]);
             // brpop 可以弹出多个list,可以作为实现优先级功能 brop hlist llist 0
             $email = $redis->executeCommand('BRPOP',['emailQueue',0]);
             if(!$email){
@@ -28,8 +27,8 @@ class SendmailController extends yii\console\Controller
             }else{
                 try{
                     $cache = yii::$app->getCache();
-                    $url = $cache->get($email); // 要发送的链接
-                    $cache->delete($email);
+                    $url = $cache->get($email[1]); // 要发送的链接
+                    $cache->delete($email[1]);
                     $sender = yii::$app->mailer;
                     $sender->compose('@common/mail/test',['contents'=>['name'=>$email[1],'link'=>$url]])
                         ->setFrom(yii::$app->params['adminEmail'])

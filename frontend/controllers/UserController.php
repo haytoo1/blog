@@ -37,8 +37,7 @@ class UserController extends yii\web\Controller
             }
             $model->register();
             // 追加进邮件队列
-            $url = yii::$app->getUrlManager()->createAbsoluteUrl(['user/activate','id'=>urlencode($post['account'])]);
-            queueSendMail::pushMail($post['account'],$url);
+            queueSendMail::pushMail($post['account']);
             // 记录注册时间,激活用
             $this->recordRegTime($post['account']);
 
@@ -47,10 +46,8 @@ class UserController extends yii\web\Controller
             ];
             $res = ['msg'=>'注册成功','status'=>1,'userinfo'=>$userinfo];
         }catch(CustomException $e){
-            throw $e;
             $res = ['msg'=>$e->getMessage().PHP_EOL,'status'=>0];
         }catch(\Exception $e){
-            throw $e;
             $res = ['msg'=>$e->getMessage().PHP_EOL,'status'=>0];
         }
         return $res;
@@ -65,11 +62,12 @@ class UserController extends yii\web\Controller
     {
         yii::$app->getResponse()->format = 'json';
 
-        $account = yii::$app->getRequest()->get('id',0);
-        if(!yii::$app->getCache()->get(urldecode($account))){
+        $account = yii::$app->getRequest()->get('token',0);
+        $res = ['status'=>0,'msg'=>'激活失败'];
+        if(!yii::$app->getCache()->get($account)){
             $res = ['status'=>0,'msg'=>'已经过了激活时限,请点击重发邮件'];
         }
-        if(!empty($user_sn) && User::updateAll(['user_active'=>1],['user_sn'=>$user_sn])){
+        if(!empty($account) && User::updateAll(['user_active'=>0],['user_email'=>base64_decode($account)])){
             $res = ['status'=>1,'msg'=>'激活成功'];
         }
         return $res;
@@ -109,9 +107,6 @@ class UserController extends yii\web\Controller
      */
     public function actionLogout()
     {
-        $a= yii::$app->getCache()->get('466594257@qq.com');
-        p($a);
-        die;
         yii::$app->getResponse()->format = 'json';
         yii::$app->getSession()->remove('username');
         return ['msg'=>'退出成功','status'=>1,'userinfo'=>''];
@@ -125,6 +120,6 @@ class UserController extends yii\web\Controller
      */
     private function recordRegTime($account)
     {
-        yii::$app->getCache()->set(urlencode($account),1,yii::$app->params['reg_time']);
+        yii::$app->getCache()->set(base64_encode($account),1,yii::$app->params['reg_time']);
     }
 }
