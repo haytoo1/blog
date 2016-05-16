@@ -9,7 +9,7 @@
 		<a href="#">查看全文</a>
 	</div>
 </div>
-<ul id="jqPaginator"></ul>
+<ul id="jqPaginator"></ul> 
 <script>
 	var getlists = '<?php echo \yii\helpers\Url::to(['index/index']) ;?>';
 </script>

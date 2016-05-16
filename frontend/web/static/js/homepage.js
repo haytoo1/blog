@@ -116,7 +116,7 @@ var sendregisterrequest = function(username, pass1, pass2){
 			user_passwd:pass1,
 			repasswd:pass2,
 			_csrf:csrf,
-		},
+		}, 
 		
 		success:function(date){
 			layer.closeAll('loading');
