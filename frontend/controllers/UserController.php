@@ -113,6 +113,31 @@ class UserController extends yii\web\Controller
         return tools::returnDataWithLoginStatus(['msg'=>'退出成功','status'=>1]);
     }
 
+    /**
+     * 重新发送邮件
+     * @return array
+     * @author 涂鸿 <hayto@foxmail.com>
+     */
+    public function actionResendemail()
+    {
+        yii::$app->getResponse()->format = 'json';
+        $account = yii::$app->getRequest()->get('token','');
+        $account = base64_decode($account);
+        try{
+            if(!empty($account) !== true){
+                throw new CustomException('错误的请求');
+            }
+            // 追加进邮件队列
+            queueSendMail::pushMail($account);
+            // 记录注册时间,激活用
+            $this->recordRegTime($account);
+            $res = ['status'=>1,'msg'=>'发送成功'];
+        }catch(CustomException $e){
+            $res = ['status'=>0,'msg'=>'系统错误'];
+        }
+        return tools::returnDataWithLoginStatus($res);
+    }
+
 
     /**
      * 设置邮件激活的时间期限

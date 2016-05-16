@@ -3,7 +3,7 @@
         <span style="color: red"> 亲爱的用户您好,你注册的账号是:</span><?php echo $contents['name']; ?>：
     </div>
 
-    <p style="margin:0px 0px 10px 0px;">请点击下面的链接激活账号完成注册。（48小时内完成）</p>
+    <p style="margin:0px 0px 10px 0px;">请点击下面的链接激活账号完成注册。（5分钟内完成）</p>
 
     <a href=<?php echo '"' . $contents['link'] . '"'; ?>>
         <p style="margin:0px 0px 10px 0px;word-wrap: break-word;word-break: break-all;"><?php echo $contents['link']; ?></p>
