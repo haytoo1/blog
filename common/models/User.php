@@ -122,8 +122,12 @@ class User extends \yii\db\ActiveRecord
         $this->user_passwd = $this->encryptPwd();
         $this->user_sn = 'SN' . yii::$app->security->generateRandomString(14);
         $this->user_nickname = $this->generateNickname();
-
-        return $this->insert(false);
+        $res = $this->insert(false);
+        if($res){
+            // 登陆
+            yii::$app->getSession()->set('username',$this->user_nickname);
+        }
+        return $res;
     }
 
     /**
