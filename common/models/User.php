@@ -102,7 +102,7 @@ class User extends \yii\db\ActiveRecord
      * @return string
      */
     private function generateNickname(){
-        return '编号'.mt_rand(000000,999999);
+        return '匿名'.mt_rand(000000,999999);
     }
 
     public function register()

@@ -7,5 +7,5 @@ return [
     'user.passwordResetTokenExpire' => 3600,
 
     // 注册后的邮件激活时间[5分钟]
-    'reg_time'=>30
+    'reg_time'=>300
 ];
