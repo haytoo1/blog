@@ -5,7 +5,6 @@ if(document.body.offsetWidth < 768){
 }
 var selecttoggle = function(){
 	$('#select-toggle').click(function(){
-		console.log($('.daohang').css('display'));
 		if($('.daohang').css('display') == 'none'){
 			$('.daohang').show();
 			if(phone){
@@ -90,7 +89,6 @@ var clienttype = function() {
 /*qq群和qq交谈类型选择*/
 var qq_check_type = function(){
 	var type = clienttype();
-	console.log(type);
 	$('.client').children('.child').hide();
 	$('.client .'+type).show();
 	switch (type){
@@ -122,7 +120,6 @@ var sendregisterrequest = function(username, pass1, pass2){
 		
 		success:function(date){
 			layer.closeAll('loading');
-			console.log(date.status);
 			if(date.status == 1){
 				layer.open({
 					type: 1,
@@ -251,10 +248,8 @@ var registered = function(){
 		var length = parseInt(pass1.length);
 		if(length<8 || length>12){
 			passmsg = '请输入8-12位有效密码';
-			console.log(1);
 		}
 		if(!passmsg){
-			console.log(2);
 			reg = pass1.match(/^[a-zA-Z0-9~!@#$%^&*()_\+.,|*-=/\\;'":\[\]\{\}]+$/);  
 			if(reg == null){
 				passmsg = '请输入字母、数字和普通字符组成的密码';
@@ -364,7 +359,6 @@ var getloadstatus = function(userinfo){
 		
 		success:function(data){
 			if(data.status==1){
-				console.log(data.userinfo);
 				getloadstatus(data.userinfo);
 			}
 		},
