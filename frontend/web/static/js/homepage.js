@@ -163,7 +163,7 @@ var sendloadingrequest = function(username, pass1){
 			layer.closeAll('loading');
 			if(date.status == 1){
 				getloadstatus(date.userinfo);
-				$('.close  close-tips').click();
+				$('.close .close-tips').click();
 			}else{
 				alert('注册失败：'+date['msg']);
 			}
@@ -336,7 +336,15 @@ $('.reload-page').click(function(){
 
 /*更新页面登陆状况*/
 var getloadstatus = function(userinfo){
+	if(!userinfo){
+		$('.user-info').removeClass('islanding');
+		return true;
+	}
 	
+	if(userinfo['name']){
+		$('#user-name').text(userinfo['name']);
+	}
+	$('.user-info').addClass('islanding');
 }
 
 var init = function(){
