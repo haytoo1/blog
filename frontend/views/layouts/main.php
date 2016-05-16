@@ -23,7 +23,7 @@
                 <span id="exit">退出</span>
                 <span class="fenge">|</span>
                 <span id="registering" data-toggle="modal" data-target="#myModal">注册</span>
-                <span id="user-name">d2050838808</span>
+                <span id="user-name"></span>
             	<span class="loadsee fenge">|</span>
             	<span class="loadsee mail">
             		<span class="mail-count">1</span>
