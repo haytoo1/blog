@@ -224,6 +224,7 @@
 <script>
 	var registerurl = '<?php echo yii\helpers\Url::to(['user/register']); ?>';
 	var loginurl = '<?php echo yii\helpers\Url::to(['user/login']);?>';
+	var logout = '<?php echo yii\helpers\Url::to(['user/logout']);?>';
 	var csrf = '<?php echo \yii::$app->getRequest()->getCsrfToken();?>';
     $("#reg").on('click',function () {
         register.fetch();

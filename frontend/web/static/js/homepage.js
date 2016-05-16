@@ -221,6 +221,14 @@ var registered = function(){
 	/*推出按钮*/
 	$('#exit').click(function(){
 		$('.user-info').removeClass('islanding');
+		var data = $.ajax({
+			type:"get",
+			url:logout,
+			
+			complete:function(){
+				self.obj = null;
+			}
+		});
 	});
 	
 	$('#reg').click(function(){
@@ -356,6 +364,7 @@ var getloadstatus = function(userinfo){
 		
 		success:function(data){
 			if(data.status==1){
+				console.log(data.userinfo);
 				getloadstatus(data.userinfo);
 			}
 		},
