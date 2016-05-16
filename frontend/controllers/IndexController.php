@@ -21,6 +21,10 @@ class IndexController extends yii\web\Controller
         /*if(!yii::$app->getRequest()->getIsAjax()){
             return
         }*/
+        if(yii::$app->getRequest()->getIsAjax()){
+            $userinfo = yii::$app->getSession()->get('username');
+            return ['status'=>1,'msg'=>'ok','userinfo'=>$userinfo,'data'=>[]];
+        }
         return $this->render('index');
 
     }
