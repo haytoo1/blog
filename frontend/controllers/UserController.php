@@ -63,7 +63,6 @@ class UserController extends yii\web\Controller
 
     public function actionLogin()
     {
-        p(yii::$app->getSession()->post('username'));
         yii::$app->getResponse()->format = 'json';
         $post = yii::$app->getRequest()->get();
         $model = new User();
