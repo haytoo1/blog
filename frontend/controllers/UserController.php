@@ -75,13 +75,15 @@ class UserController extends yii\web\Controller
                 throw new CustomException(reset($errors));
             }
             $model->login();
-            $res = ['status'=>1,'msg'=>'登录成功'];
+            $userinfo = [
+                'name'=>yii::$app->getSession()->get('username')
+            ];
+            $res = ['status'=>1,'msg'=>'登录成功','userinfo'=>$userinfo];
         }catch (CustomException $e){
             $res = ['status'=>0,'msg'=>$e->getMessage()];
         }catch (\Exception $e){
             $res = ['status'=>0,'msg'=>'系统异常'];
         }
-
         return $res;
     }
 }
