@@ -37,7 +37,10 @@ class UserController extends yii\web\Controller
             $model->register();
             // 追加进邮件队列
             queueSendMail::pushMail($post['account']);
-            $res = ['msg'=>'注册成功','status'=>1];
+            $userinfo = [
+                'name'=>yii::$app->getSession()->get('username')
+            ];
+            $res = ['msg'=>'注册成功','status'=>1,'userinfo'=>$userinfo];
         }catch(CustomException $e){
 //            throw $e;
             $res = ['msg'=>$e->getMessage().PHP_EOL,'status'=>0];
