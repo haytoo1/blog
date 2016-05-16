@@ -1,6 +1,8 @@
 /*无下划线a标签*/
 a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:none;}a:hover{text-decoration:none;}a:active{text-decoration:none;}
-
+.right{
+	float: right;
+}
 .hpage{
 	background: url('../img/hpagebgm.png');
 	background-repeat:no-repeat;
@@ -21,15 +23,94 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
 .fenge{
 	margin-left: 0px 2px 0px 2px;
 }
-#landing, #user-name{
+.fenge1, #exit, #user-name{
+	display: none;
+}
+.islanding .fenge1,.islanding #exit,.islanding #user-name{
+	display: block;
+}
+.islanding #landing, .islanding #registering{
+	display: none;
+}
+
+#landing, #registering, #exit{
 	cursor: pointer;
+}
+.loadsee{
+    display: none;
+}
+.islanding .loadsee{
+	display: block;
+}
+.mail{
+    height: 48px;
+    line-height: 48px;
+    position: relative;
+}
+.mail .hint{
+	position: absolute;
+    display: block;
+    width: 6px;
+    height: 6px;
+    background-color: #E85151;
+    border-radius: 14px;
+    left: 16px;
+    top: 17px;
+}
+.mail .mail-img{
+	padding: 0px;
+    margin-top: 16px;
+    cursor: pointer;
+}
+.mail .mail-count{
+	padding: 0px;
+	padding-left: 4px;
+}
+.mail-list{
+    position: absolute;
+    top: 30px;
+    width: 300px;
+    left: -138px;
+    height: 12px;
+    display: none;
+}
+.mail-list .list-img{
+    padding: 0px;
+    left: 143px;
+    top: 2px;
+    z-index: 94;
+    position: absolute;
+}
+.mail-img:hover .mail-list, .mail-list:hover{
+	display:block!important;
+}
+.mail .mail-list .list{
+    width: 300px;
+    color: #635E5E;
+    min-height: 200px;
+    position: absolute;
+    top: 11px;
+    line-height: 20px;
+    border: 1px solid #797171;
+    background-color: #FFFFFF;
+    list-style: none;
+    padding: 0px;
+    border-radius: 8px;
+    padding: 14px;
+    z-index: 90;
+}
+.mail-list li{
+    padding-bottom: 3px;
+    border-bottom: 1px solid #eee;
+}
+.more{
+	border-bottom: none!important;
 }
 /*首页头部样式*/
 .htitle{
 	background: url('../img/htitlebgm.jpg');
 	background-repeat:no-repeat;
 	background-size: 100% 100%;
-	background-attachment:fixed;
 	min-height: 300px;
 }
 .logo-row{
@@ -454,4 +535,30 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
 	position: absolute;
     right: 6px;
     top: 3px;
+}
+
+/*激活弹出层*/
+#activate{
+	padding: 20px;
+	display: none;
+}
+#activate .title{
+	text-align: center;
+}
+.tishi{
+	font-size: 13px;
+}
+.tishi p{
+	margin: 0px;
+}
+#btn-loadding{
+    margin-top: 24px;
+}
+.activate-close{
+    position: absolute;
+    right: 5px;
+    display: block;
+    top: -3px;
+    font-size: 24px;
+    color: #9A9595;
 }
