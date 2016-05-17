@@ -162,7 +162,8 @@ class UserController extends yii\web\Controller
     }
 
     /**
-     * 通过验证码找回密码
+     * 通过邮箱验证码找回密码
+     * @return array
      * @author 涂鸿
      */
     public function actionFindpwd()
