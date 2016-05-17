@@ -34,9 +34,7 @@ class tools
      */
     public static function returnDataWithLoginStatus($data)
     {
-        $userinfo = [
-            'name' => yii::$app->getSession()->get('username')?:''
-        ];
+        $userinfo = yii::$app->getSession()->get('userinfo');
         return array_merge(['userinfo' => $userinfo],$data);
     }
 }

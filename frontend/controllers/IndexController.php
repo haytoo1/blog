@@ -1,5 +1,6 @@
 <?php
 namespace frontend\controllers;
+use common\toolkit\tools;
 use yii;
 
 /**
@@ -21,7 +22,7 @@ class IndexController extends yii\web\Controller
             $userinfo = [
                 'name' => yii::$app->getSession()->get('username')
             ];
-            return ['status'=>1,'msg'=>'ok','userinfo'=>$userinfo,'data'=>[]];
+            return tools::returnDataWithLoginStatus(['status'=>1,'msg'=>'ok','data'=>[]]);
         }
         return $this->render('index');
     }

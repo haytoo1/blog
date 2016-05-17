@@ -138,17 +138,21 @@ class User extends \yii\db\ActiveRecord
      */
     public function login()
     {
-        $_info = (new Query())->select(['user_passwd','user_salt','user_nickname'])->from(self::tableName())
-            ->where(['user_email'=>$this->account])
+        $select = ['user_passwd','user_salt','user_nickname','user_locked','user_active'];
+        $_info = (new Query())->select($select)->from(self::tableName())
+            ->where(['and',['user_email'=>$this->account],['user_deleted'=>0]])
             ->one();
         if(!empty($_info) === false){
             throw new CustomException('账号不存在');
         }
+        if($_info['user_locked'] === '1'){
+            throw new CustomException('账号被锁定，请联系管理员解锁');
+        }
         if($_info['user_passwd'] !== md5($_info['user_salt'] . $this->user_passwd)){
             throw new CustomException('密码错误');
         }
-
-        yii::$app->getSession()->set('username',$_info['user_nickname']);
+        unset($_info['user_passwd'],$_info['user_salt']);
+        yii::$app->getSession()->set('userinfo',$_info);
         return true;
     }
 
