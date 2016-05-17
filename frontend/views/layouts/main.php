@@ -17,8 +17,16 @@
 <body>
 <div class="container-fluid hpage">
     <div class="row htitle">
-        <div class="row"> 
-            <div class="user-info">
+    	<div class="row daohang">
+            <ul class="nav nav-pills">
+                <li role="presentation" class="active"><a href="#">首页</a></li>
+                <li role="presentation"><a href="#">PHP</a></li>
+                <li role="presentation"><a href="#">HTML</a></li>
+                <li role="presentation"><a href="#">CSS</a></li>
+                <li role="presentation"><a href="#">YII2</a></li>
+            </ul>
+        </div>
+        <div class="user-info">
                 <span id="landing" data-toggle="modal" data-target="#myModal">登陆</span>
                 <span id="exit">退出</span>
                 <span class="fenge">|</span>
@@ -59,28 +67,8 @@
             		</div>
             	</span>
             </div>
-            <span id="select-toggle">-</span>
-        </div>
-        <div class="row logo-row">
-            <div class="col-xs-12 col-md-8">
-                <a href="#">
-                    <h1>猛男哦吧</h1>
-                    <h4>人如果没有梦想,和酸菜鱼又有什么区别  - by 周星吃</h4>
-                </a>
-            </div>
-        </div>
-        <div class="login"></div>
     </div>
     <div class="row hcontainer">
-        <div class="row daohang">
-            <ul class="nav nav-pills">
-                <li role="presentation" class="active"><a href="#">首页</a></li>
-                <li role="presentation"><a href="#">PHP</a></li>
-                <li role="presentation"><a href="#">HTML</a></li>
-                <li role="presentation"><a href="#">CSS</a></li>
-                <li role="presentation"><a href="#">YII2</a></li>
-            </ul>
-        </div>
         <div class="row overview">
 			<div class="left-con  col-md-12">
 				

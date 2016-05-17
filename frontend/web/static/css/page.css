@@ -3,17 +3,27 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
 .right{
 	float: right;
 }
+.htitle{
+	position: fixed;
+	width: 100%;
+	z-index: 1000;
+	min-width: 768px;
+}
 .hpage{
 	background: url('../img/hpagebgm.png');
 	background-repeat:no-repeat;
 	background-size: 100% 100%;
-	background-attachment:fixed
+	background-attachment:fixed;
+	min-width: 768px;
 }
 .user-info{
-	width: 100%;
+	width: 400px;
 	height: 48px;
+	right: 0px;
 	padding-right: 75px;
 	line-height: 48px;
+	position: absolute;
+	z-index: 100;
 }
 .user-info span{
     float: right;
@@ -28,7 +38,7 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
     width: 200px;
     height: 150px;
     line-height: 20px;
-    right: 0px;
+    right: 15px;
     top: 35px;
     display: none;
 }
@@ -120,6 +130,12 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
     top: 2px;
     z-index: 94;
     position: absolute;
+    height: 10px;
+    width: 14px;
+}
+.mail-list .list-img svg{
+	height: 10px;
+    width: 14px;
 }
 .mail-img:hover .mail-list, .mail-list:hover{
 	display:block!important;
@@ -147,12 +163,6 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
 	border-bottom: none!important;
 }
 /*首页头部样式*/
-.htitle{
-	background: url('../img/htitlebgm.jpg');
-	background-repeat:no-repeat;
-	background-size: 100% 100%;
-	min-height: 300px;
-}
 .logo-row{
 	width: 75%;
 	margin: auto;
@@ -174,33 +184,12 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
 		margin: auto;
 		padding: 35px 0px 20px 0px;
 	}
-	.htitle{
-		min-height: 150px;
-	}
-	.htitle a h1{
-	    font-size: 20px;
-	}
-	.htitle a h4{
-	    font-size: 10px;
-	}
-	#select-toggle{
-	    display: block;
-	    background-color: #000;
-	    color: #FFF;
-	    position: absolute;
-	    width: 30px;
-	    height: 20px;
-	    right: 15px;
-	    top: 15px;
-	    text-align: center;
-	    font: 2em/.5 Raleway;
-	    border-radius: 5px;
-	}
 }
 /*页面头部导航*/
 .hcontainer{
 	width: 75%;
 	margin: auto;
+	margin-top: 50px;
 }
 .daohang{
 	height: 0px;
@@ -208,14 +197,14 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
 .daohang ul{
 	position: relative;
 	z-index: 50;
-	top: -50px;
+	top: 0px;
 	background-color: #383535;
 	height: auto;
 }
 .daohang li{
-	height: 65px;
-	line-height: 65px;
-	color: #FFFFFF;
+	height: 50px;
+    line-height: 50px;
+    color: #FFFFFF;
 }
 .daohang li a:hover{
 	background-color: #e77e23;
@@ -230,31 +219,11 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
 		width: 100%;
 		margin: auto;
 	}
-	.daohang{
-		position: fixed;
-		width: 100%;
-    	z-index: 100;
-    	top: 200px;
-    	display: none;
-	}
-	.daohang li{
-		clear: both;
-		width: 100%;
-		text-align: center;
-		height: 45px;
-		line-height: 45px;
-	}
-	.daohang li a{
-		padding: 0px 35px 0px 35px;
-	}
-	.daohang ul{
-		top: -22px;
-}
 }
 
 /*主要内容*/
 .left-con{
-    margin: -30px 0px 25px 0px;
+    margin: 0px 0px 25px 0px;
     width: 70%;
     border-right: 1px solid #eee;
     padding: 0px 30px 30px 30px;
@@ -282,10 +251,10 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
 .right-con{
 	width: 29%;
     font-size: 12px;
-    margin: -60px 0px 25px 0px;
-	padding: 30px;
-	float: left;
-	border-left: 1px solid #eee;
+    margin: 0px 0px 25px 0px;
+    padding: 0px 30px 30px 30px;
+    float: left;
+    border-left: 1px solid #eee;
     position: relative;
     left: -1px;
 }
@@ -355,23 +324,18 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
 }
 @media only screen and (max-width: 768px) {
 	.left-con{
-	    margin: -30px 0px 25px 0px;
+	    margin: 20px 0px 25px 0px;
 	    width: 100%;
 	    border-right: 1px solid #eee;
 	    padding: 30px;
-	    font-size: 12px;
 	}
 	.right-con{
 		width: 100%;
-	    font-size: 12px;
-	    margin: -30px 0px 25px 0px;
+	    margin: 0px 0px 25px 0px;
 		float: left;
 		border-left: 1px solid #eee;
 	    position: relative;
 	    left: 0px;
-	}
-	.left-con h3{
-	    font-size: 18px;
 	}
 }
 /*分页样式*/
@@ -408,8 +372,6 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
 	    padding: 1px 8px 1px 8px;
 	    border: 1px solid #EEE;
 	    margin: 0px;
-	}
-	body{
 	}
 }
 /*打赏*/
