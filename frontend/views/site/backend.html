@@ -8,17 +8,56 @@
     <link rel="stylesheet" href="/source/bootstrap-3.3.6-dist/css/bootstrap.css">
     <!--开发用-->
     <link rel="stylesheet" href="../../web/source/bootstrap-3.3.6-dist/css/bootstrap.css">
+    <style>
+        /*整个导航栏*/
+        .navbar-default{
+            background-color: #086ed5;
+        }
+        /*导航栏标题文字*/
+        .navbar-default .navbar-brand {
+            color: #eee;
+        }
+        /*导航标题鼠标放上去后*/
+        .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus{
+            color: #eee;
+        }
+        .navbar-default .navbar-nav li a:hover, .navbar-default .navbar-nav li a:focus{
+            color: #eee;
+        }
+        .navbar-default .navbar-nav li a{
+            color: #CCD9E6;
+        }
+    </style>
 </head>
 <body>
 
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+        <span class="navbar-brand">开发者之家</span>
+    </div>
+
+    <form action="" class="navbar-form navbar-right">
+        <div class="form-group">
+            <input type="text" class="form-control">
+            <a type="button" class="btn btn-default">搜索</a>
+        </div>
+    </form>
+
+    <ul class="nav navbar-nav">
+        <li><a href="">PHP</a></li>
+        <li><a href="">MySQL5.7中文手册</a></li>
+        <li><a href="">iOS</a></li>
+        <li><a href="">前端</a></li>
+    </ul>
+
+</div>
 
 
 
 
 
 
-
-<script src="source/bootstrap-3.3.6-dist/js/jquery-1.12.3.js"></script>
-<script src="./source/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
+<script src="/source/bootstrap-3.3.6-dist/js/jquery-1.12.3.js"></script>
+<script src="/source/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
 </body>
 </html>
