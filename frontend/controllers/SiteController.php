@@ -72,6 +72,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        var_dump(PHP_INT_SIZE);die;
         return $this->renderPartial('backend.html');
 //        return $this->render('index');
 //        p('site/index');
