@@ -316,6 +316,10 @@ var registered = function(){
 			sendloadingrequest(username, password);
 		}
 	});
+	
+	$('.warning-close').click(function(){
+		$('.warning-activate').css('display', 'none');
+	});
 }
 
 /*邮件提示悬浮事件*/
@@ -343,9 +347,12 @@ var getloadstatus = function(userinfo){
 		$('.user-info').removeClass('islanding');
 		return true;
 	}
-	
-	if(userinfo['name']){
-		$('#user-name').text(userinfo['name']);
+	console.log(userinfo);
+	if(userinfo['user_nickname']){
+		$('#user-name').text(userinfo['user_nickname']);
+	}
+	if(!userinfo['user_active']){
+		$('.warning-activate').css('display', 'block');
 	}
 	$('.user-info').addClass('islanding');
 };

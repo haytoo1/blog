@@ -24,6 +24,19 @@
                 <span class="fenge">|</span>
                 <span id="registering" data-toggle="modal" data-target="#myModal">注册</span>
                 <span id="user-name"></span>
+                <!--登陆后提示激活开始-->
+				<div class="warning-activate">
+					<span class="warning-img">
+						<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+						   <polyline points="0,10 7,0 14,10" style="fill:#ffffff;stroke:#484848;stroke-width:1" />
+						</svg>
+					</span>
+					<div>
+						<span>您的账号尚未激活，可能导致部分功能不能正常使用，点击<a href="#">重新激活</a>进行激活。</span>
+					</div>
+					<span class="warning-close">×</span>
+				</div>
+				<!--登陆后提示激活结束-->
             	<span class="loadsee fenge">|</span>
             	<span class="loadsee mail">
             		<span class="mail-count">1</span>
@@ -179,6 +192,7 @@
                     <span class="btn btn-default" id="goloading">登陆</span>
                     <span class="btn btn-default close-tips" id='zhuce'>注册</span>
                 </div>
+                <span class="forgot-password">忘记密码？</span>
             </div>
             <div class="registered">
                 <button type="button" class="close close-tips" data-dismiss="modal" aria-label="Close"><span class="close-tips" aria-hidden="true">×</span></button>
@@ -221,6 +235,7 @@
 	<span class="btn btn-default reload-page" id="btn-loadding">立即刷新</span>
 </div>
 <!--激活提示层结束-->
+
 <script>
 	var registerurl = '<?php echo yii\helpers\Url::to(['user/register']); ?>';
 	var loginurl = '<?php echo yii\helpers\Url::to(['user/login']);?>';
