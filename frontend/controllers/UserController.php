@@ -67,6 +67,12 @@ class UserController extends yii\web\Controller
             if(!User::updateAll(['user_active'=>0],['user_email'=>base64_decode($account)])){
                 throw new CustomException('激活失败');
             }
+            $session = yii::$app->getSession();
+            $session['userinfo'] = [
+                'user_nickname'=>$session['userinfo']['user_nickname'],
+                'user_locked'=>$session['userinfo']['user_locked'],
+                'user_active'=>0,
+            ];
             $res = ['status'=>1,'msg'=>'激活成功'];
         }catch(CustomException $e){
             $res = ['status'=>0,'msg'=>$e->getMessage()];

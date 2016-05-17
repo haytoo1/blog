@@ -128,7 +128,8 @@ class User extends \yii\db\ActiveRecord
         $res = $this->insert(false);
         if($res){
             // 登陆
-            yii::$app->getSession()->set('username',$this->user_nickname);
+            $info = ['user_nickname'=>$this->user_nickname,'user_locked'=>0,'user_active'=>1];
+            yii::$app->getSession()->set('userinfo',$info);
         }
         return $res;
     }

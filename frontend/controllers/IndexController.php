@@ -19,9 +19,6 @@ class IndexController extends yii\web\Controller
     {
         if(yii::$app->getRequest()->getIsAjax()){
             yii::$app->getResponse()->format = 'json';
-            $userinfo = [
-                'name' => yii::$app->getSession()->get('username')
-            ];
             return tools::returnDataWithLoginStatus(['status'=>1,'msg'=>'ok','data'=>[]]);
         }
         return $this->render('index');
@@ -34,8 +31,14 @@ class IndexController extends yii\web\Controller
      */
     public function actionArticle()
     {
-        $redis = yii::$app->redis;
-        $redis->executeCommand('lpush',['emailQueue',serialize(['email'=>11,'url'=>22,'subject'=>33])]);
+        /*$redis = yii::$app->getSession();
+        foreach ($redis as $k=>$v){
+            $a[$k] = ($k=== 'user_active') ? 0 :$v;
+        }
+        $redis['userinfo'] = [
+            'user_active'=>$redis['userinfo']['user_active']
+        ];
+        p($redis,$a);*/
         return $this->render('article');
     }
 }
