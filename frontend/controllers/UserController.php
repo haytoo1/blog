@@ -121,7 +121,7 @@ class UserController extends yii\web\Controller
     }
 
     /**
-     * 重新发送邮件
+     * 重新发送激活邮件
      * @return array
      * @author 涂鸿 <hayto@foxmail.com>
      */
@@ -129,7 +129,8 @@ class UserController extends yii\web\Controller
     {
         yii::$app->getResponse()->format = 'json';
         $account = yii::$app->getRequest()->get('token','');
-        $account = base64_decode($account);
+        $account = urldecode($account);
+//        $account = base64_decode($account);
         try{
             if(!empty($account) !== true){
                 throw new CustomException('错误的请求');
