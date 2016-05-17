@@ -100,13 +100,7 @@ class User extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * 生成随机昵称
-     * @return string
-     */
-    private function generateNickname(){
-        return '匿名'.mt_rand(000000,999999);
-    }
+
 
     public function register()
     {
@@ -159,7 +153,12 @@ class User extends \yii\db\ActiveRecord
         yii::$app->getSession()->set('userinfo',$_info);
         return true;
     }
-    
+
+    /**
+     * 找回密码
+     * @return array
+     * @author 涂鸿
+     */
     public function findPwd()
     {
         $select = ['user_passwd','user_salt','user_nickname','user_locked','user_active'];
@@ -204,17 +203,7 @@ class User extends \yii\db\ActiveRecord
         return $res;
     }
 
-    /**
-     * 把验证码写入cache
-     * @return mixed
-     * @author 涂鸿
-     */
-    private function setverifycodeUseFindPwd()
-    {
-        $code = mt_rand(0000,9999);
-        yii::$app->getCache()->set($this->account.$this->key,$code,yii::$app->params['code_time']);
-        return $code;
-    }
+
 
     /**
      * 从cache读取验证码
@@ -229,7 +218,24 @@ class User extends \yii\db\ActiveRecord
         return $code;
     }
 
-
+    /**
+     * 生成随机昵称
+     * @return string
+     */
+    private function generateNickname(){
+        return '匿名'.mt_rand(000000,999999);
+    }
+    /**
+     * 把验证码写入cache
+     * @return mixed
+     * @author 涂鸿
+     */
+    private function setverifycodeUseFindPwd()
+    {
+        $code = mt_rand(0000,9999);
+        yii::$app->getCache()->set($this->account.$this->key,$code,yii::$app->params['code_time']);
+        return $code;
+    }
     /**
      * 加密密码
      * @return mixed
