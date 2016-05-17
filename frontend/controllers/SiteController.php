@@ -66,13 +66,13 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays homepage. 
+     * Displays homepage.
      *
      * @return mixed
      */
     public function actionIndex()
     {
-        return $this->renderPartial('test');
+        return $this->renderPartial('backend.html');
 //        return $this->render('index');
 //        p('site/index');
 //        phpinfo();
