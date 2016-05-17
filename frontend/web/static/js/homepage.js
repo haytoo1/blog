@@ -351,7 +351,7 @@ var getloadstatus = function(userinfo){
 	if(userinfo['user_nickname']){
 		$('#user-name').text(userinfo['user_nickname']);
 	}
-	if(!userinfo['user_active']){
+	if(userinfo['user_active']){
 		$('.warning-activate').css('display', 'block');
 	}
 	$('.user-info').addClass('islanding');
