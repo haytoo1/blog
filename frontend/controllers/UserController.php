@@ -175,7 +175,6 @@ class UserController extends yii\web\Controller
         $model->user_passwd = $post['user_passwd'];
         $model->repasswd = $post['repasswd'];
         $model->findPwd();
-        
     }
 
 
