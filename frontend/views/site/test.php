@@ -5,14 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--强制IE用最新模式渲染-->
     <meta name="viewport" content="width=device-width, initial-scale=1"><!--检测屏幕宽度,并以缩放率为1来初始显示-->
     <title>标题</title>
-    <link rel="stylesheet" href="./source/bootstrap-3.3.6-dist/css/bootstrap.css">
-    <style>
-        body{margin:30px;padding:30px;}
-    </style>
+    <link rel="stylesheet" href="/source/bootstrap-3.3.6-dist/css/bootstrap.css">
+    <!--开发用-->
+    <link rel="stylesheet" href="../../web/source/bootstrap-3.3.6-dist/css/bootstrap.css">
 </head>
 <body>
 
-<div class="navbar navbar-default navbar-fixed-top">
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
     <div class="navbar-header">
         <a href="#" class="navbar-brand">
             猛男哦吧
