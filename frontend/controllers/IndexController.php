@@ -34,6 +34,8 @@ class IndexController extends yii\web\Controller
      */
     public function actionArticle()
     {
+        $redis = yii::$app->redis;
+        $redis->executeCommand('lpush',['emailQueue',serialize(['email'=>11,'url'=>22,'subject'=>33])]);
         return $this->render('article');
     }
 }

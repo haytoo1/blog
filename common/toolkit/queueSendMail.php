@@ -10,19 +10,17 @@ use yii;
 class queueSendMail
 {
     /**
-     * 把邮箱加入队列,有后台脚本专门处理队列
-     * @param $email
-     * @param $url
+     * 把待发邮件加入队列,有后台脚本专门处理队列
+     * @param $data 参数类似于['email'=>$post['account'],'url'=>$url,'code'=>1024,'subject'=>'激活']
+     * @param $data email subject 必须要有 url code必须有其中一个
      * @return array
      * @author 涂鸿 <hayto@foxmail.com>\
      */
-    public static function pushMail($email)
+    public static function pushMail($data)
     {
         try{
             $redis = yii::$app->redis;
-            $redis->executeCommand('lpush',['emailQueue',$email]);
-            $url = yii::$app->getUrlManager()->createAbsoluteUrl(['user/activate','token'=>base64_encode($email)],'http');
-            yii::$app->getCache()->set($email,$url);
+            $redis->executeCommand('lpush',['emailQueue',serialize($data)]);
             $res = ['status'=>1,'msg'=>'成功'];
         }catch (\Exception $e){
             $res = ['status'=>0,'msg'=>$e->getMessage()];

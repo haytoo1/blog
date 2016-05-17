@@ -3,6 +3,7 @@
 namespace common\models;
 
 use common\toolkit\CustomException;
+use common\toolkit\queueSendMail;
 use common\toolkit\tools;
 use Yii;
 use yii\db\Query;
@@ -33,6 +34,8 @@ class User extends \yii\db\ActiveRecord
 {
     public $account;
     public $repasswd;
+    public $verifycode = null; // 找回密码用的验证码
+    public $key = 'verifycode';
     /**
      * @inheritdoc
      */
@@ -155,6 +158,76 @@ class User extends \yii\db\ActiveRecord
         yii::$app->getSession()->set('userinfo',$_info);
         return true;
     }
+    
+    public function findPwd()
+    {
+        $select = ['user_passwd','user_salt','user_nickname','user_locked','user_active'];
+        try{
+            $_info = (new Query())->select($select)->from(self::tableName())
+                ->where(['and',['user_email'=>$this->account],['user_deleted'=>0]])
+                ->one();
+            if(!$_info){
+                throw new CustomException('账号不存在');
+            }
+            if((!empty($this->verifycode) === false) || ($this->verifycode !== $this->getverifycodeUseFindPwd())){
+                throw new CustomException('验证码错误');
+            }
+            $newpwd = $this->encryptPwd();
+            $newsalt = yii::$app->security->generateRandomString(10);
+            if(!User::updateAll(['user_passwd'=>$newpwd,'user_salt'=>$newsalt],['user_email'=>$this->account])){
+                throw new CustomException('重置失败');
+            }
+            $res = ['status'=>1,'msg'=>'重置成功'];
+        }catch (CustomException $e){
+            $res = ['status'=>0,'msg'=>$e->getMessage()];
+        }catch (\Exception $e){
+            $res = ['status'=>0,'msg'=>'系统错误'];
+        }
+        return $res;
+    }
+
+    /**
+     * 发送验证码
+     * 1，写进redis,2,邮件发给用户
+     * @return array
+     * @author 涂鸿
+     */
+    public function sendFindPwdEmail()
+    {
+        if(!empty($this->account) && User::find()->where(['user_email'=>$this->account])->exists()){
+            $code = $this->setverifycodeUseFindPwd();
+            $res = queueSendMail::pushMail(['email'=>$this->account,'code'=>$code,'subject'=>'找回密码']);
+        }else{
+            $res = ['status'=>1,'msg'=>'发送失败'];
+        }
+        return $res;
+    }
+
+    /**
+     * 把验证码写入cache
+     * @return mixed
+     * @author 涂鸿
+     */
+    private function setverifycodeUseFindPwd()
+    {
+        $code = mt_rand(0000,9999);
+        yii::$app->getCache()->set($this->account.$this->key,$code,yii::$app->params['code_time']);
+        return $code;
+    }
+
+    /**
+     * 从cache读取验证码
+     * @return bool | $code
+     * @author 涂鸿
+     */
+    public function getverifycodeUseFindPwd()
+    {
+        $cache = yii::$app->getCache();
+        $code = $cache->get($this->account.$this->key) ?: false;
+        $cache->delete($this->account.$this->key);
+        return $code;
+    }
+
 
     /**
      * 加密密码

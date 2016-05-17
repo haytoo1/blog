@@ -35,7 +35,8 @@ class UserController extends yii\web\Controller
             }
             $model->register();
             // 追加进邮件队列
-            queueSendMail::pushMail($post['account']);
+            $url = yii::$app->getUrlManager()->createAbsoluteUrl(['user/activate','token'=>base64_encode($post['account'])],'http');
+            queueSendMail::pushMail(['email'=>$post['account'],'url'=>$url,'subject'=>'激活']);
             // 记录注册时间,激活用
             $this->recordRegTime($post['account']);
             $res = ['msg'=>'注册成功','status'=>1];
@@ -128,7 +129,8 @@ class UserController extends yii\web\Controller
                 throw new CustomException('错误的请求');
             }
             // 追加进邮件队列
-            queueSendMail::pushMail($account);
+            $url = yii::$app->getUrlManager()->createAbsoluteUrl(['user/activate','token'=>base64_encode($account)],'http');
+            queueSendMail::pushMail(['email'=>$account,'url'=>$url,'subject'=>'重新激活']);
             // 记录注册时间,激活用
             $this->recordRegTime($account);
             $res = ['status'=>1,'msg'=>'发送成功'];
@@ -136,6 +138,37 @@ class UserController extends yii\web\Controller
             $res = ['status'=>0,'msg'=>'系统错误'];
         }
         return tools::returnDataWithLoginStatus($res);
+    }
+
+    /**
+     * 发送验证码
+     * @return array
+     * @author 涂鸿
+     */
+    public function actionSendcode()
+    {
+        yii::$app->getResponse()->format = 'json';
+        $model = new User();
+        $account = yii::$app->getRequest()->get('account');
+        $model->account = $account;
+        return $model->sendFindPwdEmail();
+    }
+
+    /**
+     * 通过验证码找回密码
+     * @author 涂鸿
+     */
+    public function actionFindpwd()
+    {
+        yii::$app->getResponse()->format = 'json';
+        $post = yii::$app->getRequest()->get();
+        $model = new User();
+        $model->account = $post['account'];
+        $model->verifycode = $post['verifycode'];
+        $model->user_passwd = $post['user_passwd'];
+        $model->repasswd = $post['repasswd'];
+        $model->findPwd();
+        
     }
 
 
