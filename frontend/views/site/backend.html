@@ -21,11 +21,26 @@
         .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus{
             color: #eee;
         }
+
+        /*四个栏目的字体颜色*/
         .navbar-default .navbar-nav li a:hover, .navbar-default .navbar-nav li a:focus{
             color: #eee;
         }
         .navbar-default .navbar-nav li a{
             color: #CCD9E6;
+        }
+
+        /*登录按钮*/
+        .navbar-default .navbar-text{
+            color: #CCD9E6;
+            margin-right: 60px;
+        }
+        .navbar-default .navbar-text:hover{
+            color: #eee;
+        }
+
+        .navbar-default .navbar-right{
+
         }
     </style>
 </head>
@@ -36,12 +51,7 @@
         <span class="navbar-brand">开发者之家</span>
     </div>
 
-    <form action="" class="navbar-form navbar-right">
-        <div class="form-group">
-            <input type="text" class="form-control">
-            <a type="button" class="btn btn-default">搜索</a>
-        </div>
-    </form>
+
 
     <ul class="nav navbar-nav">
         <li><a href="">PHP</a></li>
@@ -50,9 +60,16 @@
         <li><a href="">前端</a></li>
     </ul>
 
-    <ul class="nav navbar-nav">
-        <li><a href="">登录</a></li>
-    </ul>
+    <a href="#" class="navbar-text navbar-right navbar-link">登录</a>
+
+    <form action="" class="navbar-form navbar-right">
+        <div class="form-group">
+            <input type="text" class="form-control">
+            <a type="button" class="btn btn-default">搜索</a>
+        </div>
+    </form>
+
+
 </div>
 
 
