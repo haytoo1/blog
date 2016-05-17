@@ -72,7 +72,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->renderPartial('test.html');
+        return $this->renderPartial('backend.html');
 //        return $this->render('index');
 //        p('site/index');
 //        phpinfo();
