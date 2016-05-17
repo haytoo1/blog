@@ -66,7 +66,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays homepage.
+     * Displays homepage. 
      *
      * @return mixed
      */
