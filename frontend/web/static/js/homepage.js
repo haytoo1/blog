@@ -359,6 +359,11 @@ var getloadstatus = function(userinfo){
 
 /*请求文章数据*/
 (function(){
+	if(!$('.lists')[0]){
+		return true;
+		console.log("1");
+	}
+	console.log("1");
 	var data = $.ajax({
 		type:"get",
 		url:getlists,
@@ -376,6 +381,13 @@ var getloadstatus = function(userinfo){
 			self.obj = null;
 		}
 	});
+})();
+
+/*自适应页面高度*/
+(function(){
+	var height = document.body.clientHeight-$('.htitle').height()-$('.footer').outerHeight();
+	height = height+'px';
+	$('.hcontainer').css('min-height', height);
 })();
 
 var init = function(){
