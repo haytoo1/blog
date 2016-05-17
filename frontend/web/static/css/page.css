@@ -130,6 +130,12 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
     top: 2px;
     z-index: 94;
     position: absolute;
+    height: 10px;
+    width: 14px;
+}
+.mail-list .list-img svg{
+	height: 10px;
+    width: 14px;
 }
 .mail-img:hover .mail-list, .mail-list:hover{
 	display:block!important;
