@@ -23,6 +23,46 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
 .fenge{
 	margin-left: 0px 2px 0px 2px;
 }
+.warning-activate{
+	position: absolute;
+    width: 200px;
+    height: 150px;
+    line-height: 20px;
+    right: 0px;
+    top: 35px;
+    display: none;
+}
+.warning-img{
+    width: 14px;
+    margin: 0px 153px 0px 0px;
+    height: 10px;
+    position: relative;
+    top: 0px;
+    z-index: 30;
+}
+.warning-img svg{
+	height: 100%;
+}
+.warning-activate div{
+	padding: 6px;
+    background-color: #FFFFFF;
+    border: 1px solid #484848;
+    position: absolute;
+    top: 9px;
+    z-index: 28;
+}
+.warning-activate .warning-close{
+	color: #6D6A6A;
+    font-size: 20px;
+    position: absolute;
+    right: 0px;
+    top: 9px;
+    z-index: 30;
+    cursor: pointer;
+}
+.warning-activate div span{
+	color: #424242;
+}
 .fenge1, #exit, #user-name{
 	display: none;
 }
@@ -561,4 +601,12 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
     top: -3px;
     font-size: 24px;
     color: #9A9595;
+}
+
+
+.forgot-password{
+	float: right;
+    margin: 29px 13px 0px 0px;
+    cursor: pointer;
+    font-size: 13px;
 }
