@@ -160,9 +160,10 @@ var sendloadingrequest = function(username, pass1){
 			layer.closeAll('loading');
 			if(date.status == 1){
 				getloadstatus(date.userinfo);
+				
 				$('.close .close-tips').click();
 			}else{
-				alert('注册失败：'+date['msg']);
+				alert('登陆失败：'+date['msg']);
 			}
 		},
 		error:function(){

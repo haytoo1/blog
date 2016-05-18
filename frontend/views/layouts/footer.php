@@ -24,7 +24,7 @@
                     <span class="btn btn-default" id="goloading">登陆</span>
                     <span class="btn btn-default close-tips" id='zhuce'>注册</span>
                 </div>
-                <span class="forgot-password">忘记密码？</span>
+                <a href="/usercontrol/repassword" class="forgot-password">忘记密码？</a>
             </div>
             <div class="registered">
                 <button type="button" class="close close-tips" data-dismiss="modal" aria-label="Close"><span class="close-tips" aria-hidden="true">×</span></button>
