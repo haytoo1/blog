@@ -12,7 +12,7 @@
     <?php } ?>
 
     <?php if(isset($contents['code'])){ ?>
-        您此次找回密码的验证码为 <?php echo $contents['code']; ?>（请在5分钟内完成，此验证码只能使用一次）
+        您此次找回密码的验证码为【 <?php echo $contents['code']; ?>】（请在5分钟内完成，此验证码只能使用一次）
     <?php } ?>
     <div style="margin:5px 0px 5px 0px;border-bottom: 1px solid #000000;"></div>
 
