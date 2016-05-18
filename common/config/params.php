@@ -1,5 +1,6 @@
 <?php
 return [
+    'sitename' =>'开发者之家',
     'adminEmail' => 'hayto@foxmail.com',
 //    'adminEmail' => 'admin@example.com',
     'supportEmail' => 'hayto@foxmail.com',
