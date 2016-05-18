@@ -160,7 +160,7 @@ var sendloadingrequest = function(username, pass1){
 			layer.closeAll('loading');
 			if(date.status == 1){
 				getloadstatus(date.userinfo);
-				
+				store.set('username',username);
 				$('.close .close-tips').click();
 			}else{
 				alert('登陆失败：'+date['msg']);
@@ -219,6 +219,7 @@ var registered = function(){
 	/*推出按钮*/
 	$('#exit').click(function(){
 		$('.user-info').removeClass('islanding');
+		$('#password').val('');
 		var data = $.ajax({
 			type:"get",
 			url:logout,
@@ -343,6 +344,12 @@ $('.reload-page').click(function(){
 });
 
 /*更新页面登陆状况*/
+(function(){
+	var username = store.get('username');
+	if(username){
+		$('#userid').val(username);
+	}
+})();
 var getloadstatus = function(userinfo){
 	if(!userinfo){
 		$('.user-info').removeClass('islanding');

@@ -13,6 +13,7 @@
     <script src="/static/bootstrap-3.3.5-dist/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/static/js/jqPaginator.js" type="text/javascript"></script>
     <script src="/static/layer/layer.js" type="text/javascript"></script>
+   	<script src="/static/js/store.js/store.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 <div class="container-fluid hpage">
