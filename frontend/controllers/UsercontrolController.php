@@ -15,5 +15,8 @@ class UsercontrolController extends \yii\web\Controller{
 	public function actionRepassword(){
 		return $this->render('repassword');
 	}
+	public function actionActiveuser(){
+		return $this->render('activeuser');
+	}
 }	
 ?>

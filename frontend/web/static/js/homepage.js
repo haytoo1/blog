@@ -369,9 +369,7 @@ var getloadstatus = function(userinfo){
 (function(){
 	if(!$('.lists')[0]){
 		return true;
-		console.log("1");
 	}
-	console.log("1");
 	var data = $.ajax({
 		type:"get",
 		url:getlists,
@@ -383,7 +381,6 @@ var getloadstatus = function(userinfo){
 			}
 		},
 		error:function(){
-			layer.alert(1);
 		},
 		complete:function(){
 			self.obj = null;

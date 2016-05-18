@@ -430,7 +430,12 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
 	padding-top: 10px;
     display: block;
 }
-
+#activeuser, #activeuser:hover{
+	color: #DC9D27;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+}
 /*footer页尾*/
 .footer{
 	background-color: #565656;

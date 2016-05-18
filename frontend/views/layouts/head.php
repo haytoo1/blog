@@ -46,7 +46,7 @@
 						</svg>
 					</span>
 					<div>
-						<span>您的账号尚未激活，可能导致部分功能不能正常使用，点击<a href="#">重新激活</a>进行激活。</span>
+						<span>您的账号尚未激活，请点击<span id="activeuser">重新激活</span>发送激活邮件到你的邮箱。</span>
 					</div>
 					<span class="warning-close">×</span>
 				</div>
