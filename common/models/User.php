@@ -146,7 +146,7 @@ class User extends \yii\db\ActiveRecord
         if($_info['user_locked'] === '1'){
             throw new CustomException('账号被锁定，请联系管理员解锁');
         }
-        if($_info['user_passwd'] !== md5($_info['user_salt'] . $this->user_passwd)){
+        if($_info['user_passwd'] != md5($_info['user_salt'] . $this->user_passwd)){
             throw new CustomException('密码错误');
         }
         unset($_info['user_passwd'],$_info['user_salt']);
@@ -169,12 +169,12 @@ class User extends \yii\db\ActiveRecord
             if(!$_info){
                 throw new CustomException('账号不存在');
             }
-            if((!empty($this->verifycode) === false) || ($this->verifycode !== $this->getverifycodeUseFindPwd())){
+            if((!empty($this->verifycode) === false) || ($this->verifycode+0 !== $this->getverifycodeUseFindPwd())){
                 throw new CustomException('验证码错误');
             }
+            $this->user_salt = yii::$app->security->generateRandomString(10);
             $newpwd = $this->encryptPwd();
-            $newsalt = yii::$app->security->generateRandomString(10);
-            if(!User::updateAll(['user_passwd'=>$newpwd,'user_salt'=>$newsalt],['user_email'=>$this->account])){
+            if(!User::updateAll(['user_passwd'=>$newpwd,'user_salt'=>$this->user_salt],['user_email'=>$this->account])){
                 throw new CustomException('重置失败');
             }
             $res = ['status'=>1,'msg'=>'重置成功'];
