@@ -98,13 +98,13 @@
 </style>
 
 
-<div class="repassword img1">
-	<ul>
+<div class="repassword img2">
+	<!--<ul>
 		<li class="back-img1">确认账号信息</li>
 		<li class="back-img2">填写新密码</li>
 		<li class="back-img3">找回密码完成</li>
-	</ul>
-	<div class="page1">
+	</ul>-->
+	<!--<div class="page1">
 		<div class="row">
 			<label>邮箱地址：</label>
 			<input class="form-control" id="e-mail" type="text" placeholder="输入需要找回密码的邮箱地址"/>
@@ -115,17 +115,27 @@
 			<span class="btn btn-default" id="sendmail">发送邮件</span>
 		</div>
 		<span class="btn btn-default" id="gopage2">下一步</span>
-	</div>
+	</div>-->
 	<div class="page2">
 		<div class="row">
+			<label>邮箱地址：</label>
+			<input class="form-control" id="e-mail" type="text" placeholder="输入需要找回密码的邮箱地址"/>
+		</div>
+		<div class="row">
+			<label>验证码：</label>
+			<input class="form-control" id="e-code" type="text" placeholder="输入邮箱验证码"/>
+			<span class="btn btn-default" id="sendmail">发送邮件</span>
+		</div>
+		<div class="row">
 			<label>输入新密码：</label>
-			<input class="form-control" id="pass1" type="text" placeholder="输入修改后的新密码"/>
+			<input class="form-control" id="pass1" type="password" placeholder="输入8-12位新密码"/>
 		</div>
 		<div class="row">
 			<label>确认新密码：</label>
-			<input class="form-control" id="pass2" type="text" placeholder="再次确认新密码"/>
+			<input class="form-control" id="pass2" type="password" placeholder="再次确认新密码"/>
 		</div>
-		<span class="btn btn-default" id="gopage1">上一步</span><span class="btn btn-default" id="gopage3">下一步</span>
+		<!--<span class="btn btn-default" id="gopage1">上一步</span>-->
+		<span class="btn btn-default" id="gopage3">提交</span>
 	</div>
 	<div class="page3">
 		<div>
@@ -144,7 +154,10 @@
 
 
 <script type="text/javascript">
+var pass1index = '';
 var pass2index = '';
+var emailindex = '';
+var codeindex = '';
 function verifyCode(){
 	var email = $('#e-mail').val();
 	var ecode = $('#e-code').val();
@@ -156,14 +169,39 @@ function changePassword(){
 	var ecode = $('#e-code').val();
 	var pass1 = $('#pass1').val();
 	var pass2 = $('#pass2').val();
-	if(pass1.length < 8 || pass1.length > 12){
-		layer.close(pass2index);
-		pass2index = layer.tips('请输入8-12位密码', '#pass1', {
+	var send = true;
+	
+	var res = email.match(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-z]+$/);  
+    if(res==null)  { 
+    	layer.close(emailindex);
+        emailindex = layer.tips('请输入有效邮箱地址作为用户名', '#e-mail', {
 			tips: [2, '#FFB330'],
 			time: 0,
 			tipsMore: true
 		});
-		return false;
+		send = false;
+    }  
+    if(ecode.length != 6){
+    	layer.close(codeindex);
+		codeindex = layer.tips('请输入8-12位密码', '#pass1', {
+			tips: [2, '#FFB330'],
+			time: 0,
+			tipsMore: true
+		});
+		send = false;
+    }
+	if(pass1.length < 8 || pass1.length > 12){
+		layer.close(pass1index);
+		var tips = '#sendmail';
+		if(!$('#sendmail')[0]){
+			tips = '#no-sendmail';
+		}
+		pass1index = layer.tips('请输入6位验证码', tips, {
+			tips: [2, '#FFB330'],
+			time: 0,
+			tipsMore: true
+		});
+		send = false;
 	}
 	if(pass1 != pass2){
 		layer.close(pass2index);
@@ -172,33 +210,66 @@ function changePassword(){
 			time: 0,
 			tipsMore: true
 		});
-		return false;
+		send = false;
 	}
 	
-	return true;
+	if(!send){
+		return false;
+	}
+	var data = $.ajax({
+		type:"get",
+		url:'<?php echo \yii\helpers\Url::to(['user/findpwd']);?>',
+		datatype:'json',
+		
+		data:{
+			account:email,
+			verifycode:ecode,
+			user_passwd:pass1,
+			repasswd:pass2
+		},
+		
+		success:function(data){
+			if(data.status==1){
+				$('.repassword').addClass('img3');
+				$('.repassword').removeClass('img1');
+				$('.repassword').removeClass('img2');
+			}else{
+				layer.alert('请求错误：'+data.msg);
+			}
+		},
+		error:function(){
+			layer.alert('网络错误');
+		},
+		complete:function(){
+			self.obj = null;
+		}
+	});
 }
 function gopage(){
-	$('#gopage2').click(function(){
-		//邮箱验证码验证通过后
-		if(verifyCode){
-			$('.repassword').addClass('img2');
-			$('.repassword').removeClass('img1');
-			$('.repassword').removeClass('img3');
-		}else{
-			layer.alert('验证码错误');
-		}
+//	$('#gopage2').click(function(){
+//		//邮箱验证码验证通过后
+//		if(verifyCode){
+//			$('.repassword').addClass('img2');
+//			$('.repassword').removeClass('img1');
+//			$('.repassword').removeClass('img3');
+//		}else{
+//			layer.alert('验证码错误');
+//		}
+//	});
+//	$('#gopage1').click(function(){
+//		$('.repassword').addClass('img1');
+//		$('.repassword').removeClass('img2');
+//		$('.repassword').removeClass('img3');
+//	});
+	$('#gopage3').click(changePassword);
+	$('#e-mail').bind('input propertychange',function(){
+		layer.close(emailindex);
 	});
-	$('#gopage1').click(function(){
-		$('.repassword').addClass('img1');
-		$('.repassword').removeClass('img2');
-		$('.repassword').removeClass('img3');
+	$('#pass1').bind('input propertychange',function(){
+		layer.close(pass1index);
 	});
-	$('#gopage3').click(function(){
-		if(changePassword()){
-			$('.repassword').addClass('img3');
-			$('.repassword').removeClass('img1');
-			$('.repassword').removeClass('img2');
-		}
+	$('#pass2').bind('input propertychange',function(){
+		layer.close(pass2index);
 	});
 }
 var times = 0;
@@ -216,9 +287,46 @@ function sendmail(){
 		if(!e.target || $(e.target).attr('id')=='no-sendmail'){
 			return false;
 		}
+		var email = $('#e-mail').val();
+		var res = email.match(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-z]+$/);  
+	    if(res==null)  { 
+	    	layer.close(emailindex);
+	        emailindex = layer.tips('请输入有效邮箱地址作为用户名', '#e-mail', {
+				tips: [2, '#FFB330'],
+				time: 0,
+				tipsMore: true
+			});
+			return false;
+	    }  
+		
+		
 		$('#sendmail').attr('id', 'no-sendmail');
 		times = 120;
 		setTimeout(daojishi, 1000);
+		
+		var data = $.ajax({
+			type:"get",
+			url:'<?php echo \yii\helpers\Url::to(['user/sendcode']);?>',
+			datatype:'json',
+			
+			data:{
+				account:email,
+			},
+			
+			success:function(data){
+				if(data.status==1){
+					layer.alert('获取验证码成功，请到邮箱中查看！');
+				}else{
+					layer.alert('获取验证码失败：'+data.msg);
+				}
+			},
+			error:function(){
+				layer.alert('网络错误');
+			},
+			complete:function(){
+				self.obj = null;
+			}
+		});
 	});
 }
 function init(){
