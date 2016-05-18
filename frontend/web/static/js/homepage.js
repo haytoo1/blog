@@ -394,7 +394,7 @@ var getloadstatus = function(userinfo){
 	$('.user-info').addClass('islanding');
 };
 
-/*请求文章数据*/
+/*请求文章数据*/ 
 (function(){
 	if(!$('.lists')[0]){
 		return true;
