@@ -1,0 +1,49 @@
+/*防止导航栏遮住内容*/
+body { padding-top: 70px; }
+/*整个导航栏背景色*/
+.navbar-default{
+    background-color: #086ed5;
+}
+/*导航栏标题文字*/
+.navbar-default .navbar-brand {
+    color: #eee;
+}
+/*导航标题鼠标放上去后*/
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus{
+    color: #eee;
+}
+
+/*四个栏目的字体颜色*/
+.navbar-default .navbar-nav li a:hover, .navbar-default .navbar-nav li a:focus{
+    color: #eee;
+}
+.navbar-default .navbar-nav li a{
+    color: #CCD9E6;
+}
+
+/*登录按钮*/
+.navbar-default .navbar-text{
+    color: #CCD9E6;
+    margin-right: 60px;
+}
+.navbar-default .navbar-text:hover{
+    color: #eee;
+}
+
+/*底栏背景色*/
+footer{ background: #eee; }
+/*.container{
+    position: fixed ;;
+    left: 0px;
+}*/
+
+/*左侧导航栏*/
+.leftbar{
+    position: absolute ;;
+    left: 0px;
+}
+
+
+
+
+

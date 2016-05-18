@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--强制IE用最新模式渲染-->
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!--检测屏幕宽度,并以缩放率为1来初始显示-->
+    <title>后台</title>
+    <link rel="stylesheet" href="/source/bootstrap-3.3.6-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/source/app/css/common.css">
+
+    <!--开发用-->
+    <link rel="stylesheet" href="../../web/source/bootstrap-3.3.6-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../web/source/app/css/common.css">
+
+
+    <style>
+        .list-group-item{
+            border: none;
+        }
+        .right{
+            float: right;
+        }
+        .nav-tabs{
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body class="container">
+<!--头部开始-->
+<div class="navbar navbar-default navbar-fixed-top">
+        <!--网站标题-->
+        <div class="navbar-header">
+            <span class="navbar-brand">开发者之家</span>
+        </div>
+
+        <!--导航标题-->
+        <ul class="nav navbar-nav">
+            <li><a href="">PHP</a></li>
+            <li><a href="">MySQL5.7中文手册</a></li>
+            <li><a href="">iOS</a></li>
+            <li><a href="">前端</a></li>
+        </ul>
+        <!--消息-->
+    <span href="" class="navbar-text">消息
+        <span class="badge">99+</span>
+    </span>
+        <!--头部登录-->
+        <div class="nav navbar-nav navbar-right">
+            <a href="#" class="navbar-text navbar-right">登录</a>
+        </div>
+        <!--头部搜索框-->
+        <form action="" class="navbar-form navbar-right">
+            <div class="form-group">
+                <input type="text" class="form-control">
+                <a type="button" class="btn btn-default">搜索</a>
+            </div>
+        </form>
+</div>
+<!--头部结束-->
+
+<!--左侧导航开始-->
+<ul class="leftbar nav nav-pills nav-stacked">
+    <li class="active"><a href="#">文章管理</a></li>
+    <li><a href="#">用户管理</a></li>
+    <li><a href="#">系统管理</a></li>
+</ul>
+<!--左侧导航结束-->
+
+
+
+
+
+
+
+
+
+
+<?php echo $content;?>
+
+
+
+
+
+
+<!--底部-->
+<footer class="navbar navbar-fixed-bottom">
+    <div class="nav navbar-nav">
+        <a href="#" class="navbar-text">© 2016 开发者之家</a>
+    </div>
+</footer>
+
+<script src="/source/bootstrap-3.3.6-dist/js/jquery-1.12.3.js"></script>
+<script src="/source/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
+
+<!--开发用-->
+<script src="../../web/source/bootstrap-3.3.6-dist/js/jquery-1.12.3.js"></script>
+<script src="../../web/source/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
+</body>
+</html>
