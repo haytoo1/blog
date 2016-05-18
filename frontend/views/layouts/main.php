@@ -1,6 +1,6 @@
 <?php include('head.php');?>
     <div class="row hcontainer">
-        <div class="row overview">
+        <div class="overview">
 			<div class="left-con  col-md-12">
 				
         		<?php echo $content;?>
