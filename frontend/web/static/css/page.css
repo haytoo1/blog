@@ -17,18 +17,22 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
 	min-width: 768px;
 }
 .user-info{
-	width: 400px;
+	width: 300px;
 	height: 48px;
-	right: 0px;
 	padding-right: 75px;
 	line-height: 48px;
-	position: absolute;
-	z-index: 100;
+	float: right;
 }
 .user-info span{
     float: right;
     padding: 0px 5px 0px 5px;
-    color: #FFF;
+    color: #CCD9E6;
+}
+.user-info span:hover{
+	color: #E6E6E6;
+}
+.warning-activate div span:hover{
+	color: #424242!important;
 }
 .fenge{
 	margin-left: 0px 2px 0px 2px;
@@ -578,4 +582,33 @@ a{text-decoration:none;}a:link{text-decoration:none;}a:visited{text-decoration:n
 }
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li>a:hover{
 	background-color: #545454;
+}
+ /*整个导航栏*/
+.navbar-default{
+    background-color: #086ed5;
+}
+/*导航栏标题文字*/
+.navbar-default .navbar-brand {
+    color: #eee;
+}
+/*导航标题鼠标放上去后*/
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus{
+    color: #eee;
+}
+
+/*四个栏目的字体颜色*/
+.navbar-default .navbar-nav li a:hover, .navbar-default .navbar-nav li a:focus{
+    color: #eee;
+}
+.navbar-default .navbar-nav li a{
+    color: #CCD9E6;
+}
+
+/*登录按钮*/
+.navbar-default .navbar-text{
+    color: #CCD9E6;
+    margin-right: 60px;
+}
+.navbar-default .navbar-text:hover{
+    color: #eee;
 }
