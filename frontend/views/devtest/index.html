@@ -14,50 +14,69 @@
     <!--<link rel="stylesheet" href="../../web/source/app/css/common.css">-->
     <!--开发用-->
     <style>
+        .ad{
+            height: auto;
+            /*border: 1px grey solid;*/
+        }
+
         /*不属于公共部分*/
         .article{
             margin-top: 15px;
         }
+        .article-item{
+            margin-bottom: 50px;
+            height: auto;
+            border: 1px #d4d4d4 solid;
+            border-top:none;
+            border-left:none;
+            border-right:none;
+        }
+        /*不属于公共部分*/
     </style>
 </head>
 <body>
 
 <!--顶部导航-->
 <div class="navbar navbar-default" role="navigation">
-    <div class="navbar-header">
-        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-            <span class="sr-only">Toggle Navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a href="##" class="navbar-brand">开发者家园</a>
-    </div>
-    <div class="collapse navbar-collapse navbar-responsive-collapse">
-        <ul class="nav navbar-nav">
-            <li><a href="##">PHP <span class="badge">N</span></a></li>
-            <li class="active"><a href="##">MySQL5.7中文手册翻译 <span class="badge">N</span></a></li>
-            <li><a href="##">iOS <span class="badge">2</span></a></li>
-            <li><a href="##">前端 <span class="badge">99+</span></a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right small">
-            <li>
-                <a href="">注册</a>
-            </li>
-            <li>
-                <a href="">登录</a>
-            </li>
-        </ul>
-    </div>
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="##" class="navbar-brand">开发者家园</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="##">PHP <span class="badge">1</span></a></li>
+                <li class="active"><a href="##">MySQL5.7中文手册翻译 <span class="badge">5</span></a></li>
+                <li><a href="##">iOS <span class="badge">2</span></a></li>
+                <li><a href="##">前端 <span class="badge">1</span></a></li>
+            </ul>
+            <div class="col-sm-3">
+                <ul class="nav navbar-nav navbar-right small">
+                    <li>
+                        <a href="">注册</a>
+                    </li>
+                    <li>
+                        <a href="">登录</a>
+                    </li>
+                </ul>
+            </div>
 
+        </div>
+    </div>
 </div>
 <!--顶部导航结束-->
 
+<!--中间内容-->
 <div class="container">
-
     <div class="row">
         <div class="col-sm-9">
-            <p class="article1">
+            <!--文章主体-->
+            <div class="article-item">
                 <h2>标题</h2>
                 <div class="row">
                     <div class="col-sm-4">2016-12-12 20:08:58</div>
@@ -67,27 +86,44 @@
                         <span class="glyphicon glyphicon-share">108</span>
                     </div>
                 </div>
-                <p class="text-justify article">这是我一位前同事现在所在公司的招聘，找我帮忙我，反正不是坏事，所以发布在这里，
-                    感兴趣的可以了解下发个简历试试。首先说明，我对这家公司不怎么了解，所以问我太多的信息我也帮不了，大家自行搜索了解！
+                <p class="text-justify article">
+                    同意。就事论事 不吹不黑。鉴于老罗在知乎的地位，还是匿了。老罗说乡镇化的意思是：流俗感和庸常感。
+                    想想的确是这样，帮主在世的时候，首要是追求完美，把产品当作艺术品来对待，不向工业做妥协，也不向市场口味做妥协，
+                    他是市场需求的创造者而不是跟随者。而库克时代，居然容许ipad mini iPhone 5c这种在乔布斯眼里是狗屎的东西问世，
+                    居然会售卖土豪金的颜色，居然边框会椭圆型，居然会设计plus这样的大屏出来，这是在向低价市场和装逼市场献媚妥协，
+                    科技革命和黑科技的气息已当然无存。乔布斯时代有人质疑苹果手机太贵，乔布斯淡淡的回应消费者：你们爱买不买。
+                    库克时代有人质疑苹果手机太贵，马上就推出了廉价版。乔布斯时代有人提醒乔布斯三星销量重要的原因是屏幕大，
+                    乔布斯回应：3.5寸人类最适合的尺寸。库克时代一步到位跟随了市场。乡镇型企业正是这种短视、庸常、跟随、流于世俗，
+                    然后屌丝迎着风艰难的从塞满的裤兜里拿出一个金色的巨型iPhone，笑呵呵的说：屌爆了...
+                    <a href="">阅读全部</a>
                 </p>
-            </p>
-
-
-
-            <p>
-            <h2>标题</h2>
-            <div class="row">
-                <div class="col-sm-4">2016-12-12 20:08:58</div>
-                <div class="col-sm-3 col-sm-push-4">
-                    <span class="glyphicon glyphicon-comment">22</span>
-                    <span class="glyphicon glyphicon-thumbs-up">88</span>
-                    <span class="glyphicon glyphicon-share">108</span>
-                </div>
             </div>
-            <p class="text-justify article">这是我一位前同事现在所在公司的招聘，找我帮忙我，反正不是坏事，所以发布在这里，
-                感兴趣的可以了解下发个简历试试。首先说明，我对这家公司不怎么了解，所以问我太多的信息我也帮不了，大家自行搜索了解！
-            </p>
-            </p>
+            <!--文章主体结束-->
+
+
+
+            <div class="article-item">
+                <h2>标题</h2>
+                <div class="row">
+                    <div class="col-sm-4">2016-12-12 20:08:58</div>
+                    <div class="col-sm-3 col-sm-push-4">
+                        <span class="glyphicon glyphicon-comment">22</span>
+                        <span class="glyphicon glyphicon-thumbs-up">88</span>
+                        <span class="glyphicon glyphicon-share">108</span>
+                    </div>
+                </div>
+                <p class="text-justify article">
+                    同意。就事论事 不吹不黑。鉴于老罗在知乎的地位，还是匿了。老罗说乡镇化的意思是：流俗感和庸常感。
+                    想想的确是这样，帮主在世的时候，首要是追求完美，把产品当作艺术品来对待，不向工业做妥协，也不向市场口味做妥协，
+                    他是市场需求的创造者而不是跟随者。而库克时代，居然容许ipad mini iPhone 5c这种在乔布斯眼里是狗屎的东西问世，
+                    居然会售卖土豪金的颜色，居然边框会椭圆型，居然会设计plus这样的大屏出来，这是在向低价市场和装逼市场献媚妥协，
+                    科技革命和黑科技的气息已当然无存。乔布斯时代有人质疑苹果手机太贵，乔布斯淡淡的回应消费者：你们爱买不买。
+                    库克时代有人质疑苹果手机太贵，马上就推出了廉价版。乔布斯时代有人提醒乔布斯三星销量重要的原因是屏幕大，
+                    乔布斯回应：3.5寸人类最适合的尺寸。库克时代一步到位跟随了市场。乡镇型企业正是这种短视、庸常、跟随、流于世俗，
+                    然后屌丝迎着风艰难的从塞满的裤兜里拿出一个金色的巨型iPhone，笑呵呵的说：屌爆了...
+                    <a href="">阅读全部</a>
+                </p>
+            </div>
 
 
 
@@ -98,11 +134,22 @@
             </ul>
             <!--分页结束-->
         </div>
-
+        <div class="col-sm-3 ad">
+            <p>
+                死神永生，虽然掩体计划的傲慢也颇为讽刺，但是程心一路而来的圣母心就把这种傲慢表现得更具体了。
+                不论是当执剑人时的错误，还是勒令维德时的正气凛然，
+                而或是最后留下一个生态球，用爱毁灭了整个宇宙，
+                她始终都没有对自己深省过，有的只是麻木。这种麻木是一种自我安慰，告诉自己错的不是我，
+                而是人们，是维德，是世界，而自己始终是爱与和平的圣母化身。
+                维德最后交出武装的时候，眼里全是绝望。一个大喊着“前进！前进！不择手段地前进！”的男人，
+                不会因为一个小小的承诺阻碍了人类的未来。维德看到了程心的傲慢，
+                也看到了绝大部分人类的傲慢。这种弱小无知，却对自己的理解充满自信的傲慢，绝对无法挽救。
+                所以他选择了放弃，坚持抵抗也毫无意义。
+            </p>
+        </div>
     </div>
-
-
 </div>
+<!--中间内容结束-->
 
 
 
