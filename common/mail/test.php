@@ -17,7 +17,7 @@
     <div style="margin:5px 0px 5px 0px;border-bottom: 1px solid #000000;"></div>
 
     <div>
-        <p style="margin:5px 0px 5px 0px;font-size: 12px;">此信息由<a href="http://www.bing.com"><?php echo \yii::$app->params['sitename']; ?></a>系统发出，如有疑问,可直接回复。</p>
+        <p style="margin:5px 0px 5px 0px;font-size: 12px;">此信息由<a href="<?php echo \yii\helpers\Url::home('http'); ?>"><?php echo \yii::$app->params['sitename']; ?></a>系统发出，如有疑问,可直接回复。</p>
         <p style="margin:5px 0px 5px 0px;font-size: 12px;">如有疑问请<a href="#">联系我们</a>。</p>
     </div>
 </div>

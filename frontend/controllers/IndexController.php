@@ -31,6 +31,7 @@ class IndexController extends yii\web\Controller
      */
     public function actionArticle()
     {
+
         /*$redis = yii::$app->getSession();
         foreach ($redis as $k=>$v){
             $a[$k] = ($k=== 'user_active') ? 0 :$v;
