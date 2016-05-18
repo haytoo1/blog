@@ -1,6 +1,7 @@
 <?php
 return [
     'sitename' =>'开发者之家',
+    'siteurl'=>'http://211.149.208.43/',
     'adminEmail' => 'hayto@foxmail.com',
 //    'adminEmail' => 'admin@example.com',
     'supportEmail' => 'hayto@foxmail.com',
