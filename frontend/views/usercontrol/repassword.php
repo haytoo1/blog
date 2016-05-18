@@ -181,9 +181,13 @@ function changePassword(){
 		});
 		send = false;
     }  
-    if(ecode.length != 6){
+    if(!ecode.length){
     	layer.close(codeindex);
-		codeindex = layer.tips('请输入8-12位密码', '#pass1', {
+    	var tips = '#sendmail';
+		if(!$('#sendmail')[0]){
+			tips = '#no-sendmail';
+		}
+		codeindex = layer.tips('请输入验证码', tips, {
 			tips: [2, '#FFB330'],
 			time: 0,
 			tipsMore: true
@@ -192,11 +196,7 @@ function changePassword(){
     }
 	if(pass1.length < 8 || pass1.length > 12){
 		layer.close(pass1index);
-		var tips = '#sendmail';
-		if(!$('#sendmail')[0]){
-			tips = '#no-sendmail';
-		}
-		pass1index = layer.tips('请输入6位验证码', tips, {
+		pass1index = layer.tips('请输入8-12位密码', '#pass1', {
 			tips: [2, '#FFB330'],
 			time: 0,
 			tipsMore: true
@@ -270,6 +270,9 @@ function gopage(){
 	});
 	$('#pass2').bind('input propertychange',function(){
 		layer.close(pass2index);
+	});
+	$('#e-code').bind('input propertychange',function(){
+		layer.close(codeindex);
 	});
 }
 var times = 0;
