@@ -103,6 +103,36 @@ var qq_check_type = function(){
 	}
 	
 };
+/*发送重新激活请求*/
+var sendactiveuser = function(){
+	$('#activeuser').click(function(){
+		var email = $('#userid').val();
+		var date = $.ajax({
+			type:'get',
+			url:activeuser,
+			dataType:'json',
+			data:{
+				token:email,
+			}, 
+			
+			success:function(date){
+				layer.closeAll('loading');
+				if(date.status == 1){
+					alert('发送成功，请到邮箱中激活。');
+				}else{
+					alert('请求失败：'+date['msg']);
+				}
+			},
+			error:function(){
+				layer.closeAll('loading');
+				alert('网络错误');
+			},
+			complete:function(){
+				self.obj = null;
+			},
+		});
+	});
+};
 
 /*发送注册请求*/
 var sendregisterrequest = function(username, pass1, pass2){
@@ -400,6 +430,7 @@ var init = function(){
 	selecttoggle();
 	createPaginator(1,20);
 	registered();
+	sendactiveuser();
 };
 
 $(document).ready(init);
