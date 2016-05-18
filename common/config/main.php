@@ -54,6 +54,7 @@ $config = [
                 'password' => 'tpztsvggjfhfbifh',
             ],
         ],
+
 ]
 ];
 if(YII_DEBUG) {
