@@ -74,6 +74,7 @@
 	var logout = '<?php echo yii\helpers\Url::to(['user/logout']);?>';
 	var csrf = '<?php echo \yii::$app->getRequest()->getCsrfToken();?>';
 	var activeuser = '<?php echo \yii\helpers\Url::to(['user/resendemail']);?>';
+	var getuserinfo = '<?php echo \yii\helpers\Url::to(['user/resendemail']);?>';
     $("#reg").on('click',function () {
         register.fetch();
     })

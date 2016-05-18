@@ -40,7 +40,7 @@ var createPaginator = function(page, totalPages){
 	}else{
 		$('#jqPaginator').jqPaginator({
 		    totalPages: totalPages,
-		    visiblePages: 7,
+		    visiblePages: 5,
 		    currentPage: page,
 		
 		    first: '<li class="first"><a href="javascript:void(0);">首页</a></li>',
@@ -380,6 +380,22 @@ $('.reload-page').click(function(){
 		$('#userid').val(username);
 	}
 })();
+
+(function(){
+	$.ajax({
+		type:"get",
+		url:getuserinfo,
+		datatype:'json',
+		
+		success:function(data){
+			getloadstatus(data.userinfo);
+		},
+		complete:function(){
+			self.obj = null;
+		}
+	});
+})();
+
 var getloadstatus = function(userinfo){
 	if(!userinfo){
 		$('.user-info').removeClass('islanding');
