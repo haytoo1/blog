@@ -49,7 +49,8 @@ class SendmailController extends yii\console\Controller
     }
     private function sendCode($data)
     {
-        yii::$app->mailer->compose('@common/mail/test',['contents'=>['name'=>$data['email'],'link'=>$data['code']]])
+        $code = $data['code']."（此验证码只能使用一次）";
+        yii::$app->mailer->compose('@common/mail/test',['contents'=>['name'=>$data['email'],'link'=>$code]])
             ->setFrom(yii::$app->params['adminEmail'])
             ->setTo($data['email'])
             ->setSubject($data['subject'])
