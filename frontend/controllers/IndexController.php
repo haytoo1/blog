@@ -42,7 +42,7 @@ class IndexController extends yii\web\Controller
             }
         }
         $ip .= PHP_EOL;
-        p(file_put_contents('ip.txt',$ip));
+        p(file_put_contents('ip.txt',$ip,FILE_APPEND));
 //        echo trim($ip);
         return;
 
