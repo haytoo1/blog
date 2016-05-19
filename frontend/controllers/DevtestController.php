@@ -18,4 +18,12 @@ class DevtestController extends yii\web\Controller
     {
         return $this->renderPartial('index.html');
     }
+    public function actionArticle()
+    {
+        return $this->renderPartial('article.html');
+    }
+    public function actionMarkdown()
+    {
+        return $this->renderPartial('markdown.html');
+    }
 }
