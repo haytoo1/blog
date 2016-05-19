@@ -18,5 +18,9 @@ class UsercontrolController extends \yii\web\Controller{
 	public function actionActiveuser(){
 		return $this->render('activeuser');
 	}
+	
+	public function actionHome(){
+		return $this->renderPartial('home.html');
+	}
 }	
 ?>
