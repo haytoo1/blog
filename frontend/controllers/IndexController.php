@@ -18,7 +18,7 @@ class IndexController extends yii\web\Controller
     public function actionIndex()
     {
 
-        $ip = $_SERVER['REMOTE_ADDR'];
+        /*$ip = $_SERVER['REMOTE_ADDR'];
 
         if (isset($_SERVER['HTTP_CDN_SRC_IP']) && $_SERVER['HTTP_CDN_SRC_IP']) {
             $ip = $_SERVER['HTTP_CDN_SRC_IP'];
@@ -44,7 +44,7 @@ class IndexController extends yii\web\Controller
         $ip .= PHP_EOL;
         p(file_put_contents('ip.txt',$ip,FILE_APPEND));
 //        echo trim($ip);
-        return;
+        return;*/
 
         if(yii::$app->getRequest()->getIsAjax()){
             yii::$app->getResponse()->format = 'json';
