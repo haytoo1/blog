@@ -26,4 +26,8 @@ class DevtestController extends yii\web\Controller
     {
         return $this->renderPartial('markdown.html');
     }
+    public function actionSem()
+    {
+        return $this->renderPartial('sem.html');
+    }
 }
