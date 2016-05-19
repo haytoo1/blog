@@ -18,16 +18,15 @@ class IndexController extends yii\web\Controller
     public function actionIndex()
     {
 
-
         $ip = $_SERVER['REMOTE_ADDR'];
 
         if (isset($_SERVER['HTTP_CDN_SRC_IP']) && $_SERVER['HTTP_CDN_SRC_IP']) {
             $ip = $_SERVER['HTTP_CDN_SRC_IP'];
         } else {
             if(!isset($_SERVER['HTTP_X_FORWARDED_FOR'])){
-                return '';
+                $ip = 'HTTP_X_FORWARDED_FOR';
             }
-            $ip_temp = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            $ip_temp = isset($_SERVER['HTTP_X_FORWARDED_FOR'])?$_SERVER['HTTP_X_FORWARDED_FOR']:'HTTP_X_FORWARDED_FOR';
             trim($ip_temp);
             if (strpos($ip_temp, ',')) {
                 $ip_arr_tmp = explode(',', $ip_temp);
@@ -42,7 +41,8 @@ class IndexController extends yii\web\Controller
 //                }
             }
         }
-        p(file_put_contents('ip.txt',$ip,PHP_EOL));
+        $ip .= PHP_EOL;
+        p(file_put_contents('ip.txt',$ip));
 //        echo trim($ip);
         return;
 
