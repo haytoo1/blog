@@ -24,13 +24,18 @@
 	}
 	.nav-fixed-left{
 		position: fixed;
+		z-index: 50;
+		transition: left 0.2s;
 	}
 	.user-info{
-		margin-bottom: 1vh;
 		padding: 20px;
+		border-bottom: 1px solid rgba(255,255,255,0.5);
 	}
 	.user-info .head-portrait{
-		margin-bottom: 1vh;
+		margin-bottom: 4vh;
+	}
+	.user-info .head-portrait img{
+		border: 4px solid rgba(255,255,255,0.75);
 	}
 	.user-info .user-tools{
 		margin-bottom: 1vh;
@@ -44,12 +49,10 @@
 		border-radius: 34px;
 		background-color: #eee;
 		color: #A4D986;
+		cursor: pointer;
 	}
 	.bg-gradient{
 		background: linear-gradient(136deg, #C2E987, #309E85);
-	}
-	.select{
-		
 	}
 	.select input{
 		height: 50px;
@@ -59,6 +62,8 @@
 		border: none;
 		background: rgba(255,255,255,0.3);
 		outline: none;
+		color: #FFFFFF;
+	    font-size: 22px;
 	}
 	.select span{
 		height: 50px;
@@ -78,6 +83,37 @@
 	    background: rgba(255,255,255,0.5);
 	    overflow-y: auto;
 	}
+	.list a{
+		position: relative;
+	    float: left;
+	    clear: both;
+	    margin: 5px 0;
+	    padding: 0 15px 0 32px;
+	    font-size: 16px;
+	    line-height: 22px;
+	    white-space: nowrap;
+	    text-decoration: none;
+	    text-overflow: ellipsis;
+	    color: #55606F;
+	    overflow: hidden;
+	    outline: none;
+	}
+	.list a:before{
+		position: absolute;
+	    top: 2px;
+	    left: 16px;
+	    z-index: 1;
+	    line-height: 17px;
+	    font-size: 14px;
+	    color: #4F5252;
+	    content: ">";
+	    transition: transform 0.15s linear;
+	    font-family: sans-serif;
+	    font-weight: 900;
+	}
+	.nav-nobackcolor  li a, .nav-nobackcolor li a:hover{
+		background-color: transparent!important;
+	}
 	.full-obj-height{
 		height: 100%;
 	}
@@ -88,15 +124,93 @@
 	    background: #309E85;
 	}
 	
+	.nav > li{
+		transition: all 0.2s;
+	}
+	.nav > li a{
+		height: 50px;
+		padding: 0px;
+		line-height: 50px;
+		text-align: center;
+		border-bottom: 1px solid rgba(255,255,255,0.5);
+		color: #eee;
+	}
+	.nav > li.active a{
+		color: #337ab7;
+	}
+	.nav-shadow li{
+		box-shadow: inset 0px 0 0 rgba(255,255,255,0.5);
+	}
+	.nav-shadow li:hover{
+		box-shadow: inset 15px 0 0 rgba(255,255,255,0.5);
+	}
+	.nav-shadow li.active{
+		box-shadow: inset 200px 0 0 rgba(255,255,255,0.5);
+		
+	}
+	#menu-icons {
+	    position: fixed;
+	    right: 0px;
+	    width: 42px;
+	    display: block;
+	    height: 42px;
+	    font-size: 24px;
+	    line-height: 42px;
+	    color: #fff;
+	    background: linear-gradient(105deg, #C2E987, #309E85);
+	    overflow: hidden;
+	    transition: transform 0.35s cubic-bezier(0.77, 0, 0.175, 1);
+	    cursor: pointer;
+	    overflow: hidden;
+	    z-index: 50;
+	}
+	.menu-icon .glyphicon{
+		text-align: center;
+		height: 42px;
+	    font-size: 17px;
+	    line-height: 42px;
+	    width: 42px;
+	    float: left;
+	}
+	.menu-icon{
+		width: 84px;
+	    left: 0px;
+	    position: absolute;
+	    transition: left 0.2s;
+	}
+	/*动画*/
+	@keyframes myfirst{
+		from {left: 16px;}
+		to {left: 18px;}
+	}
+	@-webkit-keyframes myfirst /* Safari and Chrome */{
+		from {left: 16px;}
+		to {left: 18px;}
+	}
+	.left-frames a:hover:before{
+		animation: myfirst 0.15s;
+		-webkit-animation: myfirst 0.15s; 
+		animation-direction:alternate;
+		animation-timing-function:linear;
+		-webkit-animation-timing-function:linear; 
+		animation-iteration-count:3;
+		-webkit-animation-iteration-count:3;
+	}
     </style>
 </head>
 <body>
 	<div class="container-fluid">
+		<div class="hidden-lg" id="menu-icons">
+			<div class="menu-icon">
+				<span class="glyphicon glyphicon-arrow-right"></span>
+				<span class="glyphicon glyphicon-arrow-left"></span>
+			</div>
+		</div>
 		<div class="row">
-			<div class="col-sm-4 hidden-xs hidden-md hidden-sm nav-fixed-left nopadding">
+			<div class="col-sm-4 col-sm-pull-12 col-lg-pull-0 nav-fixed-left">
 				<div class="row full-screen-height bg-gradient">
-					<div class="col-sm-4 nopadding">
-						<div class="user-info">
+					<div class="col-sm-4">
+						<div class="row user-info">
 							<div class="head-portrait">
 								<img class="img-responsive img-circle" src="/static/img/logo.png"/>
 							</div>
@@ -107,14 +221,13 @@
 								<span class="glyphicon glyphicon-lock"></span>
 							</div>
 						</div>
-						<div>
-							<ul class="nav">
-								<li class="active"><a href="#">123456789123</a></li>
-								<li><a href="#">123456789123</a></li>
-								<li><a href="#">123456789123</a></li>
-								<li><a href="#">123456789123</a></li>
-								<li><a href="#">123456789123</a></li>
-								<li><a href="#">123456789123</a></li>
+						<div class="row">
+							<ul class="nav nav-shadow nav-nobackcolor nav-select">
+								<li class="active"><a href="#">PHP</a></li>
+								<li><a href="#">Mysql 5.7中文手册</a></li>
+								<li><a href="#">IOS</a></li>
+								<li><a href="#">前段</a></li>
+								<li><a href="#">其他</a></li>
 							</ul>
 						</div>
 					</div>
@@ -123,82 +236,82 @@
 				        	<input type="text"  placeholder="Search">
 				        	<span class="glyphicon glyphicon-search"></span>
 						</div>
-						<div class="list row scrollbar">
-							<ul class="nav">
-								<ul>123456789</ul>
-								<ul>123456789</ul>
-								<ul>123456789</ul>
-								<ul>123456789</ul>
-								<ul>123456789</ul>
-								<ul>123456789</ul>
-								<ul>123456789</ul>
-								<ul>123456789</ul>
-								<ul>123456789</ul>
-								<ul>123456789</ul>
-								<ul>123456789</ul>
-								<ul>123456789</ul>
-								<ul>123456789</ul>
-								<ul>123456789</ul>
-								<ul>123456789</ul>
-								<ul>123456789</ul>
-								<ul>123456789</ul>
-								<ul>123456789</ul>
-							</ul>
+						<div class="list row scrollbar left-frames">
+							<a href="#">样式文章名</a>
+							<a href="#">样式文章名</a>
+							<a href="#">样式文章名</a>
+							<a href="#">样式文章名</a>
+							<a href="#">样式文章名</a>
+							<a href="#">样式文章名</a>
+							<a href="#">样式文章名</a>
+							<a href="#">样式文章名</a>
+							<a href="#">样式文章名</a>
+							<a href="#">样式文章名</a>
+							<a href="#">样式文章名</a>
+							<a href="#">样式文章名</a>
+							<a href="#">样式文章名</a>
+							<a href="#">样式文章名</a>
+							<a href="#">样式文章名</a>
+							<a href="#">样式文章名</a>
+							<a href="#">样式文章名</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-12 col-lg-8 col-lg-push-4">
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
-				<p>123456789132456789123456789</p>
+			<div class="row col-sm-12 col-lg-8 col-lg-push-4">
+				<div class="col-sm-10 col-sm-push-1">
+					
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+					<p>123456789132456789123456789</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -215,10 +328,37 @@
 <!--开发用-->
 
 <script type="text/javascript">
+	if($('#menu-icons').css('display') != 'none'){
+			$('.nav-fixed-left').css('left','-'+$('.nav-fixed-left').outerWidth()+'px');
+		}else{
+			$('.nav-fixed-left').css('left','0px');
+		}
 	$('.full-screen-height').css('height', $(window).height()+'px');
 	window.onresize=function(){  
+//		if($('#menu-icons').css('display') != 'none'){
+//			$('.nav-fixed-left').css('left','-'+$('.nav-fixed-left').outerWidth()+'px');
+//		}else{
+//			$('.nav-fixed-left').css('left','0px');
+//		}
         $('.full-screen-height').css('height', $(window).height()+'px'); 
-    }  
+    };
+    $('.nav-select li').click(function(){
+    	$(this).parent().children('li').removeClass('active');
+    	$(this).addClass('active');
+    });
+    console.log($('.nav-fixed-left').outerWidth());
+    $('#menu-icons').click(function(){
+    	var nav_fixed_left = $('.nav-fixed-left').outerWidth();
+    	if($(this).hasClass('open')){
+    		$(this).removeClass('open');
+    		$('.menu-icon').css('left', '0px');
+    		$('.nav-fixed-left').css('left','-'+nav_fixed_left+'px');
+    	}else{
+    		$(this).addClass('open');
+    		$('.menu-icon').css('left', '-42px');
+    		$('.nav-fixed-left').css('left', '0px');
+    	}
+    });
 </script>
 </body>
 </html>
