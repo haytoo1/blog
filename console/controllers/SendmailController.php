@@ -55,4 +55,21 @@ class SendmailController extends yii\console\Controller
             ->setSubject($data['subject'])
             ->send();
     }
+
+
+    public function actionMail()
+    {
+        $headers   = array();
+        $headers[] = "MIME-Version: 1.0";
+        $headers[] = "Content-type: text/plain; charset=iso-8859-1";
+        $headers[] = "From: admin<9admin@lisi.com>";
+        $headers[] = "Bcc: JJ Chong <haytoo@163.com>";
+        $headers[] = "Reply-To: Recipient Name <receiver@domain3.com>";
+        $headers[] = "Subject: 主题header";
+        $headers[] = "X-Mailer: PHP/".phpversion();
+
+        $tx = '466594257@qq.com';
+        var_dump(mail('haytoo@163.com','标题','内容'));
+    }
+
 }

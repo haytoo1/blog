@@ -16,6 +16,7 @@ class DevtestController extends yii\web\Controller
     public $keyword = '前端开发页面';
     public function actionIndex()
     {
+        var_dump(mail('haytoo@163.com','标题','内容'));
         return $this->renderPartial('index.html');
     }
     public function actionArticle()
