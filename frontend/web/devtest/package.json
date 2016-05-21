@@ -1,0 +1,22 @@
+{
+  "name": "devtest",
+  "version": "1.0.0",
+  "description": "study",
+  "main": "index.js",
+  "dependencies": {
+    "marked": "^0.3.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "too",
+  "license": "ISC"
+}
