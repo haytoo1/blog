@@ -1,5 +1,6 @@
 <?php
 namespace frontend\controllers;
+use common\models\User;
 use common\toolkit\tools;
 use yii;
 
@@ -71,4 +72,5 @@ class IndexController extends yii\web\Controller
         p($redis,$a);*/
         return $this->render('article');
     }
+
 }

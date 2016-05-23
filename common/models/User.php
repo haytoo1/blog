@@ -32,6 +32,8 @@ use yii\db\Query;
  */
 class User extends \yii\db\ActiveRecord
 {
+//    public $test;
+
     public $account;
     public $repasswd;
     public $verifycode = null; // 找回密码用的验证码
@@ -62,7 +64,8 @@ class User extends \yii\db\ActiveRecord
             [['user_province', 'user_city', 'user_county'], 'string', 'max' => 5],
             [['user_ip'], 'string', 'max' => 15],
             [['user_phone'], 'safe'],
-            [['user_email'], 'safe']
+            [['user_email'], 'safe'],
+
         ];
     }
 
@@ -97,6 +100,7 @@ class User extends \yii\db\ActiveRecord
             'register' => ['account','user_passwd','repasswd'],
 //            'registerFromPhone' => ['user_phone','user_passwd'],
             'login' => ['account','user_passwd'],
+            'test'=>['test']
         ];
     }
 
