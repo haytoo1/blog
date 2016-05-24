@@ -16,14 +16,16 @@
                     <span>账号登陆</span>
                     <span class="right-title"></span>
                 </div>
-                <div>
-                    <div class="row-input"><span class="input-img glyphicon glyphicon-user"></span><input type="text" id="userid" placeholder="输入邮箱地址"/></div>
-                    <div class="row-input"><span class="input-img glyphicon glyphicon-lock"></span><input type="password" id="password" placeholder="输入密码"/></div>
-                </div>
-                <div class="fottor">
-                    <span class="btn btn-default" id="goloading">登陆</span>
-                    <span class="btn btn-default close-tips" id='zhuce'>注册</span>
-                </div>
+                <form id="test">
+	                <div>
+	                    <div class="row-input"><span class="input-img glyphicon glyphicon-user"></span><input type="text" id="userid" placeholder="输入邮箱地址"/></div>
+	                    <div class="row-input"><span class="input-img glyphicon glyphicon-lock"></span><input type="password" id="password" placeholder="输入密码"/></div>
+	                </div>
+	                <div class="fottor">
+	                    <span class="btn btn-default" id="goloading">登陆</span>
+	                    <span class="btn btn-default close-tips" id='zhuce'>注册</span>
+	                </div>
+                </form>
                 <a href="/usercontrol/repassword" class="forgot-password">忘记密码？</a>
             </div>
             <div class="registered">
