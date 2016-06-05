@@ -22,7 +22,14 @@ $config = yii\helpers\ArrayHelper::merge(
     require(__DIR__ . '/console/config/main.php')
 //    require(__DIR__ . '/console/config/main-local.php')
 );
-
+function p()
+{
+    foreach(func_get_args() as $_v)
+    {
+        var_dump($_v);
+    }
+    die;
+}
 $application = new yii\console\Application($config);
 $exitCode = $application->run();
 exit($exitCode);
