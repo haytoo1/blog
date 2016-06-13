@@ -30,4 +30,9 @@ class DevtestController extends yii\web\Controller
     {
         return $this->renderPartial('sem.html');
     }
+    public function actionT()
+    {
+        ini_set('precision', 3);
+        p(3.14159);
+    }
 }
