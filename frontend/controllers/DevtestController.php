@@ -7,6 +7,7 @@
  */
 
 namespace frontend\controllers;
+use Faker\Provider\DateTime;
 use yii;
 
 class DevtestController extends yii\web\Controller
@@ -30,9 +31,16 @@ class DevtestController extends yii\web\Controller
     {
         return $this->renderPartial('sem.html');
     }
+
+
     public function actionT()
     {
-        ini_set('precision', 3);
-        p(3.14159);
+        session_start();
+//        $_SESSION['a']=1;
+        p($_SESSION);
+    }
+    function mycallback()
+    {
+        $a = 1;
     }
 }
