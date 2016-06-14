@@ -35,12 +35,6 @@ class DevtestController extends yii\web\Controller
 
     public function actionT()
     {
-        session_start();
-//        $_SESSION['a']=1;
-        p($_SESSION);
-    }
-    function mycallback()
-    {
-        $a = 1;
+        p(hash_algos());
     }
 }
