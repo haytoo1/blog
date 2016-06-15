@@ -3,30 +3,20 @@
  * User: 涂鸿<hayto@foxmail.com>
  * Date-Time: 2016/6/15 9:43
  */
+
+// 1. 构建Server对象
 $serv = new swoole_server("0.0.0.0", 9501);
 
-//设置异步任务的工作进程数量
-$serv->set(array('task_worker_num' => 4));
+// 2. 设置运行时参数
+$serv->set(['worker_num'=>4, 'daemonize'=>false]);
 
-$serv->on('receive', function($serv, $fd, $from_id, $data) {
-    //投递异步任务
-
-    $task_id = $serv->task($data);
-    echo "Dispath AsyncTask: id=$task_id\n";
+// 3. 注册一系列事件回调函数
+$serv->on('connect', function(){
+    echo 'Connect';
+});
+$serv->on('receive', function(){
+    echo 'receive';
 });
 
-//处理异步任务
-$serv->on('task', function ($serv, $task_id, $from_id, $data) {
-
-    echo "New AsyncTask[id=$task_id]".PHP_EOL;
-    //返回任务执行的结果
-    $serv->finish(558);
-});
-
-//处理异步任务的结果
-$serv->on('finish', function ($serv, $task_id, $data) {
-    echo "AsyncTask[$task_id] Finish: $data".PHP_EOL;
-});
-
-
+// 5. 启动服务器
 $serv->start();
