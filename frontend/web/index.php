@@ -23,7 +23,6 @@ function p()
     }
     die;
 }
-
 $application = new yii\web\Application($config);
 $application->run();
  

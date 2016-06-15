@@ -35,6 +35,11 @@ class DevtestController extends yii\web\Controller
 
     public function actionT()
     {
-        p(hash_algos());
+        /*$tash = new \swoole_client(SWOOLE_SOCK_TCP, SWOOLE_SOCK_ASYNC);
+        if(!$client = $tash->connect('127.0.0.1', 9501)){
+            echo 'Connect Fail';
+        }
+        $tash->send(json_encode([1,2,3]));
+        echo 1111;*/
     }
 }
