@@ -27,7 +27,7 @@ class Server
     }
 
     public function onConnect( $serv, $fd, $from_id ) {
-        $serv->send( $fd, "Hello {$fd}!" );
+        $serv->send( $fd, "Hello {$fd}!\r\n" );
     }
 
     public function onReceive( swoole_server $serv, $fd, $from_id, $data ) {

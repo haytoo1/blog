@@ -1,5 +1,8 @@
 <?php
 
+
+
+
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'dev');
 
@@ -25,4 +28,4 @@ function p()
 }
 $application = new yii\web\Application($config);
 $application->run();
- 
+
