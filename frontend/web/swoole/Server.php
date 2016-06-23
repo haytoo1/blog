@@ -3,41 +3,17 @@
  * User: 涂鸿<hayto@foxmail.com>
  * Date-Time: 2016/6/17 14:47
  */
-class Server
-{
-    private $serv;
+$serv = new swoole_http_server("127.0.0.1", 9501);
+$serv->set([
+    'worker_num'=>2,
+    'max_request'=>1000
+]);
+$serv->on('Request', function($request, $response) {
+    var_dump($request);
 
-    public function __construct() {
-        $this->serv = new swoole_server("0.0.0.0", 9501);
-        $this->serv->set(array(
-            'worker_num' => 8,
-            'daemonize' => false,
-        ));
+    $response->cookie("User", "Swoole");
+    $response->header("X-Server", "Swoole");
+    $response->end("<h1>Hello Swoole!</h1>");
+});
 
-        $this->serv->on('Start', array($this, 'onStart'));
-        $this->serv->on('Connect', array($this, 'onConnect'));
-        $this->serv->on('Receive', array($this, 'onReceive'));
-        $this->serv->on('Close', array($this, 'onClose'));
-
-        $this->serv->start();
-    }
-
-    public function onStart( $serv ) {
-        echo "Start\n";
-    }
-
-    public function onConnect( $serv, $fd, $from_id ) {
-        $serv->send( $fd, "Hello {$fd}!\r\n" );
-    }
-
-    public function onReceive( swoole_server $serv, $fd, $from_id, $data ) {
-        echo "Get Message From Client {$fd}:{$data}\n";
-        $serv->send($fd, $data);
-    }
-
-    public function onClose( $serv, $fd, $from_id ) {
-        echo "Client {$fd} close connection\n";
-    }
-}
-// 启动服务器
-$server = new Server();
+$serv->start();

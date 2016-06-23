@@ -45,6 +45,6 @@ class DevtestController extends yii\web\Controller
 
 
 //        ini_set('memory_limit', '64M');
-        p(ini_get('memory_limit'));
+        echo 1;
     }
 }
