@@ -35,16 +35,6 @@ class DevtestController extends yii\web\Controller
 
     public function actionT()
     {
-        /*$tash = new \swoole_client(SWOOLE_SOCK_TCP, SWOOLE_ASYNC);
-        if(!$client = $tash->connect('127.0.0.1', 9501)){
-            echo 'Connect Fail';
-        }
-        $tash->send(json_encode([1,2,3]));
-        echo posix_getpid();*/
-
-
-
-//        ini_set('memory_limit', '64M');
-        echo 1;
+        p($_SERVER);
     }
 }
