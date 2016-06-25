@@ -35,6 +35,6 @@ class DevtestController extends yii\web\Controller
 
     public function actionT()
     {
-        p($_SERVER);
+        phpinfo();
     }
 }
