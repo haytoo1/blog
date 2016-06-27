@@ -4,64 +4,28 @@
  * Date-Time: 2016/6/17 14:47
  */
 
-class Server
-{
-    private $serv;
+$server = new swoole_server('0.0.0.0', 9501);
+$server->on('start', function($serv){
+    echo "我是start-1\n";
+});
 
-    public function __construct()
-    {
-        $this->serv = new swoole_server('0.0.0.0', 9501);
-        $this->serv->set([
-            'worker_num' => 8,
-            'daemonize' => false,
-            'max_request' => 10000,
-            'dispatch_mode' => 2,
-            'task_work_num' => 8
-        ]);
-        $this->serv->on('Start', [$this, 'onStart']);
-        $this->serv->on('Connet', [$this, 'onConnect']);
-        $this->serv->on('Receive', [$this, 'onReceive']);
-        $this->serv->on('Close', [$this, 'onClose']);
-        //
-        $this->serv->on('Task', [$this, 'onTask']);
-        $this->serv->on('Finish', [$this, 'onFinish']);
-        $this->serv->start();
-    }
+$server->on('managerStart', function(){
+    echo "我是managerStart-1\n";
+});
 
-    private function onStart($serv){
-        echo 'Start{\r\n}';
-    }
-    private function onConnect($serv, $fd, $from_id){
-        echo "Client {$fd} connect{\r\n}";
-    }
-    private function onClose($serv, $fd, $from_id){
-        echo "Cilent {$fd} close connection \r\n";
-    }
-    // 收到来自客户端的数据
-    private function onReceive(swoole_server $serv, $fd, $from_id, $data){
-        echo "Get Message From Client {$fd}:{$data}\r\n";
+$server->on('workerstart', function(){
+    echo "我是workerstart-2\n";
+});
 
-        $data = [
-            'task'=>'task_1', // 任务名称
-            'params'=>$data, // 数据
-            'fd'=>$fd // 客户端标示符
-        ];
-        $serv->task(json_encode($data, true)); // 投递任务,json格式化因为只能传递字符串
-    }
+$server->on('connect', function(){
+    echo "我是connect-3\n";
+});
 
-    private function onTask($serv, $task_id, $from_id, $data){
-        echo "This Task {$task_id} from worker {$from_id} \r\n";
-        echo "Data: {$data} \r\n";
+$server->on('receive', function(){
+    echo "我是receive-4\n";
+});
 
-        $data = json_decode($data);
-        echo "Receive Tash: {$data['task']}";
-        var_dump($data['params']);
-        $serv->send($data['fd'], 'Hello Task');// 通过客户端描述符,给客户端返回信息
-        return "Finish"; // 告诉worker进程finish
-    }
-    private function onFinish($serv, $task_id, $data){
-        echo "Task {$task_id} finish \r\n";
-        echo "Result: {$data}\r\n";
-    }
-}
-$server = new Server();
+$server->on('shutdown', function(){
+    echo "我是shutdown-4\n";
+});
+$server->start();
