@@ -6,11 +6,12 @@
  * @author 涂鸿 <hayto@foxmail.com>
  */
 
-// 数组学习
-$arr = [[[1,2]],[[11,22]]];
-foreach($arr as list($a, $b)){
-    var_dump($a, $b);
-}
-// 会输出
-// $a=1 $b=2
-// $a=11 $b=22
+$t1 = '2015-11-10 12:20:31';
+$t2 = '2015-11-10 18:20:38';
+$base = '1970-01-01 00:00:00';
+echo strtotime($base);die;
+$s = strtotime($t2)-strtotime($t1);
+//echo $s;
+echo gmdate('d天H时i分s秒', $s);
+
+
